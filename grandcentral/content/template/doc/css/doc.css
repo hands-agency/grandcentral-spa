@@ -1,0 +1,164 @@
+/********************************************************************************************/
+/* Nav
+/********************************************************************************************/
+#doc nav
+{
+	background:#E2E2E2;
+	padding:15px;
+}
+#doc nav a
+{
+	color:#000;
+}
+
+/********************************************************************************************/
+/* Content
+/********************************************************************************************/
+#doc .content
+{
+}
+#doc .padding
+{
+	background:#fff;
+	border-radius:2px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:15px;
+	margin-bottom:30px;
+	overflow:auto;
+}
+
+#doc h2
+{
+	margin:0 0 10px;
+	font-size:24px;
+}
+#doc h2 span.flag
+{
+	font-family:"ProximaNova-Regular";
+	text-transform:uppercase;
+	background:#F2F2F2;
+	border-radius:2px;
+	padding:4px 5px;
+	margin-right:10px;
+	font-size:10px;
+	position:relative;
+	top:-5px;
+}
+#doc h3
+{
+	border-top:1px solid #F2F2F2;
+	font-size:20px;
+	margin:0 !important;
+	padding:10px 0 0 0;
+}
+#doc h4
+{
+	font-family:"ProximaNova-Bold" !important;
+	margin-bottom:5px;
+	font-size:20px;
+}
+#doc h4:not(:first-child)
+{
+	border-top:1px solid #F2F2F2;
+	font-size:14px;
+	padding-top:15px;
+	margin-top:15px;
+}
+#doc .descr
+{
+	color:#888;
+	margin-bottom:10px;
+}
+#doc .section
+{
+	float:right;
+	width:80%;
+	padding:10px 0 0 15px;
+	border-left:1px solid #ddd;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border-top:1px solid #F2F2F2;
+}
+/* Code */
+#doc code,
+#doc pre
+{
+	background:#F2F2F2;
+	font-size:14px;
+	margin:10px 0;
+}
+#doc pre
+{
+	border:1px solid #F2F2F2;
+	padding:10px 40px;
+}
+#doc p,
+#doc ul
+{
+	margin:0 0 10px 0;
+}
+#doc ul
+{
+	padding:0 0 0 20px;
+	list-style-type:square;
+}
+
+/* Tables */
+#doc table
+{
+	background:#eee;
+	width:100%;
+	margin:0 0 10px 0;
+}
+#doc table tr th
+{
+	font-weight:bold;
+	text-align:left;
+}
+#doc table tr th,
+#doc table tr td
+{
+	padding:10px;
+	border-bottom:1px solid #fff;
+}
+#doc table tr ul,
+#doc table tr ol
+{
+	padding-left:10px;
+	margin:0;
+}
+#doc table tr ul
+{
+	list-style-type:square;
+}
+#doc table tr ol
+{
+	list-style-type:decimal;
+}
+
+/********************************************************************************************/
+/* The PHP doc
+/********************************************************************************************/
+#doc #section_php ul
+{
+	border-bottom:1px solid #ccc;
+	padding:0 0 20px 0;
+	margin:0 0 20px 0;
+}
+
+/********************************************************************************************/
+/* Detail
+/********************************************************************************************/
+/* Toc */
+#doc .toc
+{
+	padding:20px;
+}
+#doc h3
+{
+	margin-top:20px;
+}
+

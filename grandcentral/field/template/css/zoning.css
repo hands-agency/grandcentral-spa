@@ -1,0 +1,587 @@
+/********************************************************************************************/
+/* On page love
+/********************************************************************************************/
+li[data-type="zoning"] h1
+{
+	text-align:center;
+	font-size:30px;
+	margin:0 0 20px 0;
+}
+li[data-type="zoning"] h1 .site
+{
+	font-family:"ProximaNova-Thin";
+}
+li[data-type="zoning"] h1 .divider
+{
+	opacity:0.2;
+}
+li[data-type="zoning"] h1 .page
+{
+	font-family:"ProximaNova-Regular";
+}
+
+
+/********************************************************************************************/
+/* Browser
+/********************************************************************************************/
+li[data-type="zoning"]
+{
+	background:transparent !important;
+}
+li[data-type="zoning"] .zoningselected,
+li[data-type="zoning"] .zoningavailable
+{
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+li[data-type="zoning"] .zoningselected
+{
+	width:80%;
+}
+li[data-type="zoning"] .zoningavailable
+{
+	width:20%;
+}
+
+/* Kill the available list when context is open */
+.contextOpened1 li[data-type="zoning"] .zoningselected,
+.contextOpened1 li[data-type="zoning"] .zoningselected
+{
+	width:100%;
+}
+.contextOpened1 li[data-type="zoning"] .zoningselected .zones,
+.contextOpened1 li[data-type="zoning"] .zoningselected .zones
+{
+}
+.contextOpened1 li[data-type="zoning"] .zoningavailable,
+.contextOpened1 li[data-type="zoning"] .zoningavailable
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Devices
+/********************************************************************************************/
+li[data-type="zoning"] .devices
+{
+	margin:0 auto 30px auto;
+	text-align:center;
+	font-size:10px;
+}
+li[data-type="zoning"] .devices li
+{
+	display:inline-block;
+	margin:0 10px;
+	opacity:0.3;
+	cursor:pointer;
+}
+li[data-type="zoning"] .devices li:hover
+{
+	opacity:0.7;
+}
+li[data-type="zoning"] .devices li.on
+{
+	opacity:1;
+}
+li[data-type="zoning"] .devices li .title
+{
+	font-family:"ProximaNova-Bold";
+	letter-spacing:0.5px;
+	text-transform:uppercase;
+}
+li[data-type="zoning"] .devices li .size
+{
+	font-family:Georgia;
+	font-style:italic;
+}
+
+/* Browser sizes (screen/2) */
+li[data-type="zoning"] .zoningselected .zones[data-device="phone"]
+{
+	width:240px; /* 480 */
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="tablet"]
+{
+	width:374px; /* 768 */
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="laptop"]
+{
+	width:496px; /* 992 */
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="desktop"]
+{
+	width:700px; /* 1200 */
+}
+
+/********************************************************************************************/
+/* Zones
+/********************************************************************************************/
+li[data-type="zoning"] .zoningselected .zones
+{
+	margin:0 auto 20px auto;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	border-radius:5px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border:1px solid #ccc;
+	background:#fff;
+	position:relative;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+li[data-type="zoning"] .zones.in
+{
+	padding-top:40px;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+/* Mock up browser bar */
+li[data-type="zoning"] .zoningselected .zones .browserbar
+{
+	background:#DFDFDF;
+	color:#ccc;
+	position:absolute;
+	width:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:0 10px;
+	height:40px;
+	top:0;
+	left:0;
+	line-height:40px;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons
+{
+	display:inline-block;
+	vertical-align:middle;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin-right:10px;
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="phone"] .browserbar .buttons,
+li[data-type="zoning"] .zoningselected .zones[data-device="tablet"] .browserbar .buttons
+{
+	display:none;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(1)
+{
+	color:#FC635E;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(2)
+{
+	color:#FDBE41;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(3)
+{
+	color:#35CB4B;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .addressbar
+{
+	background:#fff;
+	line-height:25px;
+	display:inline-block;
+	vertical-align:middle;
+	padding:0 10px;
+	font-size:10px;
+	width:70%;
+	border-radius:2px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="phone"] .browserbar,
+li[data-type="zoning"] .zoningselected .zones[data-device="tablet"] .browserbar
+{
+	text-align:center;
+}
+
+/* Mock up Floating line */
+li[data-type="zoning"] .zoningselected .zones .floatingline
+{
+	position:absolute;
+	top:400px;
+	width:140%;
+	border-bottom:1px dashed #000;
+	z-index:100;
+	left:-20%;
+	display:none;
+}
+
+/********************************************************************************************/
+/* Zones
+/********************************************************************************************/
+li[data-type="zoning"] .zones .zone
+{
+	position:relative;
+	clear:both;
+	background:#F2F2F2;
+}
+li[data-type="zoning"] .zones .zone:not(:last-child)
+{
+	border-bottom:1px solid #F2F2F2;
+}
+
+/* Zone title */
+li[data-type="zoning"] .zones .zone>.title
+{
+	position:absolute;
+	left:-120px;
+	top:0;
+	width:100px;
+	font-size:10px;
+	font-family:"ProximaNova-Regular";
+	letter-spacing:0.5px;
+	text-transform:uppercase;
+	height:100%;
+	border-right:1px solid transparent;
+	opacity:0.5;
+	text-align:right;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+
+li[data-type="zoning"] .zones .zone:hover>.title
+{
+	border-color:#FFC000;
+	opacity:1;
+	left:-110px;
+}
+
+li[data-type="zoning"] .zones .zone>.title span
+{
+	position:absolute;
+	right:10px;
+	top:50%;
+	height:20px;
+	line-height:20px;
+	margin:-10px 0 0 0;
+	
+}
+.unlocked li[data-type="zoning"] .zones .zone>.title
+{
+	display:block;
+}
+li[data-type="zoning"] .zones .zone.right>.title
+{
+	left:auto;
+	right:-100px !important;
+	text-align:left;
+	padding:0 0 0 10px;
+	border:none;
+}
+li[data-type="zoning"] .zones .zone.right>.title:after
+{
+	left:-39px !important;
+}
+
+/********************************************************************************************/
+/* Sections
+/********************************************************************************************/
+li[data-type="zoning"] .zones li,
+li[data-type="zoning"] .choices li
+{
+	background:#F2F2F2;
+	margin:0 0 1px 0;
+	font-size:0.9em;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	position:relative;
+}
+li[data-type="zoning"] .zones li:hover,
+li[data-type="zoning"] .choices li:hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+	z-index:3;
+}
+li[data-type="zoning"] .zones li.focusedByContext
+{
+	border-color: #FF0000;
+	-webkit-box-shadow: 0 0 4px #FF0000;
+	box-shadow: 0 0 4px #FF0000;
+}
+
+li[data-type="zoning"] .zones li .title
+{
+	position:absolute;
+	right:-185px;
+	top:0px;
+	width:150px;
+	font-size:10px;
+	font-family:"ProximaNova-Bold";
+	letter-spacing:0.5px;
+	text-transform:uppercase;
+	display:block;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	padding:10px;
+	border-radius:2px;
+}
+li[data-type="zoning"] .zones li .title:before
+{
+	content:"●";
+	position:absolute;
+	left:-108px;
+	top:21px;
+	z-index:1;
+	width:100px;
+	font-size:8px;
+	color:#000;
+	opacity:0.5;
+}
+li[data-type="zoning"] .zones li .title:after
+{
+	content:"";
+	position:absolute;
+	left:-105px;
+	top:25px;
+	z-index:1;
+	border-bottom:1px solid #000;
+	width:100px;
+	opacity:0.5;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+li[data-type="zoning"] .zones li:hover .title:after
+{
+	width:90px !important;
+}
+li[data-type="zoning"] .zones li:hover .title:before,
+li[data-type="zoning"] .zones li:hover .title:after
+{
+	opacity:1;
+}
+li[data-type="zoning"] .zones li .title:hover
+{
+	background:rgba(255, 255, 255, 0.9);
+}
+li[data-type="zoning"] .zones li:hover .title
+{
+	right:-175px;
+}
+li[data-type="zoning"] .zones li .title span
+{
+	display:block;
+}
+li[data-type="zoning"] .zones li .title span.app,
+li[data-type="zoning"] .choices li .title span.app
+{
+	font-family:"ProximaNova-Thin";
+	text-transform:none;
+}
+li[data-type="zoning"] .zones li .preview
+{
+	min-height:40px;
+}
+li[data-type="zoning"] .zones li .preview iframe
+{
+	width:200%;
+	height:200%;
+	opacity:0.4;
+	-moz-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	pointer-events:none;
+}
+
+/* Iframes */
+li[data-type="zoning"] .zoningselected .zones iframe
+{
+	width:200%;
+	height:200%;
+	-moz-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+li[data-type="zoning"] li .descr
+{
+	color:#ccc;
+	margin-left:23px;
+}
+li[data-type="zoning"] li .delete
+{
+	top:2px;
+	right:2px;
+}
+li[data-type="zoning"] li .delete
+{
+	display:none;
+	height:25px;
+	width:25px;
+	text-align:center;
+	line-height:25px;
+	background:rgba(255, 255, 255, 0.8);
+}
+
+/********************************************************************************************/
+/* Selected sections */
+/********************************************************************************************/
+/* Floats */
+li[data-type="zoning"] .selected.left,
+li[data-type="zoning"] .selected.right
+{
+	clear:none !important;
+	width:50%;
+}
+li[data-type="zoning"] .selected.left
+{
+	float:left;
+}
+li[data-type="zoning"] .selected.right
+{
+	float:right;
+}
+
+/* Sections */
+li[data-type="zoning"] .selected ol
+{
+	background:#fff;
+}
+li[data-type="zoning"] .selected li
+{
+	min-height:80px;
+	border:1px solid transparent;
+	width:auto !important;
+	cursor:ns-resize;
+}
+li[data-type="zoning"] .selected ol li:hover .delete
+{
+	display:block;
+}
+li[data-type="zoning"] .selected ol li .title
+{
+	cursor:pointer;
+}
+li[data-type="zoning"] .selected li.ui-draggable-dragging .title
+{
+	display:none;
+}
+li[data-type="zoning"] .selected ol li.focusedByContext .title,
+li[data-type="zoning"] .selected ol li:hover .title
+{
+	display:block;
+}
+li[data-type="zoning"] .selected ol li .title:hover
+{
+	color:#419BF9;
+}
+li[data-type="zoning"] .selected ol li .config
+{
+	clear:both;
+	border-top:1px solid #ccc;
+	padding:10px;
+	margin-top:5px;
+}
+
+/* Nodata */
+li[data-type="zoning"] .selected ol:empty
+{
+
+}
+li[data-type="zoning"] .selected ol:empty:before
+{
+	line-height:50px;
+	color:#999;
+}
+
+/********************************************************************************************/
+/* Available apps & sections
+/********************************************************************************************/
+li[data-type="zoning"] .available
+{
+}
+li[data-type="zoning"] .available p
+{
+	margin:0 0 5px 0;
+	color:#999;
+}
+
+/* Refine */
+li[data-type="zoning"] .available .refine input
+{
+	width:100% !important;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin:0 0 5px 0;
+	border:1px solid #ccc;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:5px;
+}
+
+/* Available */
+li[data-type="zoning"] .available ul
+{
+	overflow:auto;
+	max-height:600px;	
+}
+li[data-type="zoning"] .available li
+{
+	padding:10px;
+	cursor:move;
+}
+li[data-type="zoning"] .available li .title
+{
+	color:#000;
+	text-align:center;
+}
+li[data-type="zoning"] .available li .preview
+{
+	display:none;
+}
+
+/* Add */
+li[data-type="zoning"] .available .add
+{
+	text-align:center;
+	margin-top:5px;
+	display:none;
+}
+li[data-type="zoning"] .available .add button
+{
+	cursor:pointer;
+	background:transparent !important;
+	height:30px;
+	display:block;
+	line-height:30px;
+	width:100%;
+	padding:0 !important;
+}
+li[data-type="zoning"] .available .add button:after
+{
+	content:"+";
+	font-size:28px;
+	color:#666;
+}
+li[data-type="zoning"] .available .add:hover button:after
+{
+	color:#419BF9;
+}

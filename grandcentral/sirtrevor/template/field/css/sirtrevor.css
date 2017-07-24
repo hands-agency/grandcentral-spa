@@ -1,0 +1,42 @@
+/********************************************************************************************/
+/* Some styling
+/********************************************************************************************/
+li[data-type="sirtrevor"] .wrapper .st-block__inner
+{
+	padding:10px;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block
+{
+	font-family:'ProximaNova-Regular';
+	font-size:0.8em;
+	line-height:1.6em;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block b
+{
+	font-family:'ProximaNova-Bold';
+	font-weight:bold; /* take that away and un-bold won't work */
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block i
+{
+	font-family:'ProximaNova-Regular-Italic';
+	font-style:italic; /* take that away and un-italic won't work */
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block--heading
+{
+	font-style:'ProximaNova-Regular';
+	font-size:1.4em;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block>div
+{
+/*	margin-bottom:10px;*/
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block>ul
+{
+	display: block;
+	list-style-type: disc; /* take that away and list block won't work */
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}

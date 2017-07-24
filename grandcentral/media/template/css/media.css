@@ -1,0 +1,407 @@
+/********************************************************************************************/
+/* Common
+/********************************************************************************************/
+#mediaLibrary
+{
+}
+#mediaLibraryNav
+{
+	position:relative;
+	margin-bottom:10px;
+}
+#mediaLibraryNav li
+{
+	height:40px;
+	font-size:12px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+#mediaLibraryNav li.back
+{
+	width:70px;
+	float:left;
+}
+#mediaLibraryNav li.back button
+{
+	width:100%;
+	height:35px;
+	line-height:35px;
+	padding:0 !important;
+}
+#mediaLibraryNav li.search
+{
+	padding-left:80px;
+	width:100%;
+}
+#mediaLibraryNav li.search input
+{
+	border:none;
+	height:35px;
+	line-height:35px;
+	width:100%;
+	padding:0 !important;
+	border-radius:2px;
+	margin:0 !important;
+}
+#mediaLibrary .loading
+{
+	text-align:center;
+	margin:200px 0;
+}
+
+/********************************************************************************************/
+/* new
+/********************************************************************************************/
+#mediaLibrary .filter
+{
+	border-bottom:1px solid #eee;
+	margin-left:180px;
+	padding:5px;
+	margin-bottom:5px;
+}
+
+/********************************************************************************************/
+/* List
+/********************************************************************************************/
+#mediaLibrary .files
+{
+}
+#mediaLibrary h2
+{
+	text-transform: none;
+}
+
+/* Files */
+#mediaLibrary .files li
+{
+	float: left;
+	width:110px;
+	/*height:140px;*/
+	position:relative;
+	margin:5px;
+}
+#mediaLibrary .files li:not(.upload)
+{
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	background:#fff;
+	overflow:hidden;
+	border:1px solid #ddd;
+}
+#mediaLibrary .files li:not(.upload):hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+}
+#mediaLibrary .files li a
+{
+	display:block;
+}
+
+/* Draggable TODO (it's bound to the document..) */
+.ui-draggable-dragging
+{
+	display:block;
+	width:100px !important;
+	height:100px !important;
+	border-radius:100px;
+	overflow:hidden;
+	background-color: #FFF;
+	opacity:0.8;
+	z-index:1000;
+	position: relative;
+	text-align: center;
+	font-size: 10px;
+}
+li.ui-draggable-dragging *
+{
+	/*white-space:nowrap;*/
+}
+.ui-draggable-dragging span.preview
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width:200%;
+	height: 100%;
+	display: block;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover !important; /* pour Chrome et Safari */
+	-moz-background-size: cover !important; /* pour Firefox */
+	-o-background-size: cover !important; /* pour Opera */
+	background-size: cover !important; /* version standardisée */
+}
+
+/* fields*/
+#mediaLibrary .files li .preview
+{
+	border-bottom:1px solid #ddd;
+	display:block;
+	height:70px;
+	text-align:center;
+	line-height:60px;
+	font-size:32px;
+	color:#ccc;
+	overflow:hidden; /* to play nice with new images*/
+
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover !important; /* pour Chrome et Safari */
+	-moz-background-size: cover !important; /* pour Firefox */
+	-o-background-size: cover !important; /* pour Opera */
+	background-size: cover !important; /* version standardisée */
+}
+
+#mediaLibrary .files li a:not(.image) .preview
+{
+	height:60px;
+	background:#F2F2F2;
+}
+#mediaLibrary .files li a .preview:before
+{
+	font-family: "feather";
+}
+#mediaLibrary .files li a.image .preview
+{
+	background:
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		#F2F2F2;
+	background-size: 15px 30px
+}
+#mediaLibrary .files li a.video .preview:before
+{
+	content:'';
+}
+#mediaLibrary .files li a.application .preview:before
+{
+	content:'';
+}
+#mediaLibrary .files li a.text .preview:before
+{
+	content:'';
+}
+#mediaLibrary .files li .title
+{
+	font-size:11px;
+	display:block;
+	color:#333;
+	padding:0 10px;
+	line-height:30px;
+	white-space: nowrap;
+	height:30px;
+	background:#fff;
+}
+
+/* New (ribbon) */
+#mediaLibrary .files li.new:before
+{
+	content:'new';
+	font-size:7px;
+	padding:4px 0 3px;
+	color:#fff;
+	text-transform:uppercase;
+	background:#B7DA72;
+	width:70px;
+	text-align:center;
+	position:absolute;
+	top:5px;
+	right:-25px;
+	transform:rotate(45deg);
+	-ms-transform:rotate(7deg); /* IE 9 */
+	-moz-transform:rotate(7deg); /* Firefox */
+	-webkit-transform:rotate(45deg); /* Safari and Chrome */
+	-o-transform:rotate(7deg); /* Opera */
+	box-shadow: 0 1px 3px rgba(34,25,25,0.3);
+	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.3);
+	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.3);
+	text-shadow: rgba(0,0,0,0.5) 0px 1px 0px;
+}
+
+/* Upload */
+#mediaLibrary .dir .files li.upload #holder
+{
+	border:1px dashed #ccc;
+	color:#444;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:10px;
+	font-family: 'ProximaNova-Thin';
+	text-align:center;
+	height:140px;
+}
+#mediaLibrary .dir:not(.empty) .files li.upload #holder
+{
+	display:table-cell;
+	width:120px;
+	vertical-align: middle;
+	font-size:12px;
+}
+#mediaLibrary .dir.empty .files li.upload
+{
+	float:none;
+	width:100%;
+	height:auto;
+}
+#mediaLibrary .dir.empty .files li.upload #holder
+{
+	padding:100px 40px;
+	height:auto;
+	font-size:28px;
+}
+#holder.hover
+{
+	border-color:#419BF9 !important;
+}
+#holder progress
+{
+	width: 90%;
+	display:none;
+}
+#mediaLibrary .fail
+{
+	background: #c00; padding: 2px; color: #fff;
+}
+#mediaLibrary .hidden
+{
+	display: none !important;
+}
+
+/* Folders */
+#mediaLibrary .folders
+{
+	clear:both;
+	padding-top:10px;
+}
+#mediaLibrary .folders>ul>li
+{
+	margin:0 0 10px 0;
+	width:47%;
+	border:1px solid #ddd;
+	border-radius:2px;
+	background-color:#eee;
+	height:85px;
+	cursor:pointer;
+}
+#mediaLibrary .folders>ul>li:hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+}
+#mediaLibrary .folders>ul>li:nth-child(odd)
+{
+	float:left;
+}
+#mediaLibrary .folders>ul>li:nth-child(even)
+{
+	float:right;
+}
+#mediaLibrary .folders>ul>li .title,
+#mediaLibrary .folders>ul>li .title input
+{
+	text-align:center;
+	line-height:35px;
+	height:35px;
+	font-size:12px;
+	font-family:'ProximaNova-Regular';
+	text-transform:uppercase;
+	background-color:#fff;
+}
+#mediaLibrary .folders>ul>li .title input
+{
+	padding:0;
+	background:transparent;
+}
+#mediaLibrary .folders>ul>li .title a
+{
+	color:#000;
+}
+#mediaLibrary .folders>ul>li .preview
+{
+	overflow:hidden;
+}
+#mediaLibrary .folders>ul>li .preview li
+{
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:33.33%;
+	height:50px;
+    background-position: center center;
+    background-size: cover;
+}
+/* Add */
+#mediaLibrary .folders .add .button
+{
+	font-size:50px;
+	line-height:80px;
+	color:#ddd;
+	text-align:center;
+}
+#mediaLibrary .folders .add:hover .button
+{
+	color:#419BF9;
+}
+#mediaLibrary .folders .add .title
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Detail
+/********************************************************************************************/
+#mediaLibrary .detail .preview
+{
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #ddd;
+	margin-bottom:15px;
+	display:block;
+	background:
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		#F2F2F2;
+	background-size: 15px 30px;
+	cursor:move;
+}
+#mediaLibrary .detail .preview:hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+}
+#mediaLibrary .detail .preview img
+{
+	display:block;
+	width:100%;
+}
+
+#mediaLibrary .detail .about
+{
+	font-size:11px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	background:#fff;
+	border:1px solid #ddd;
+	margin-bottom:15px;
+	max-width:100%;
+	overflow:hidden;
+}
+#mediaLibrary .detail .about td
+{
+	padding:10px;
+	border-bottom:1px solid #eee;
+}

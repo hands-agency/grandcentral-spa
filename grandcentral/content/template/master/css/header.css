@@ -1,0 +1,69 @@
+/********************************************************************************************/
+/* #main>header
+/********************************************************************************************/
+#main>header
+{
+	background:rgba(0, 0, 0, 0.7);
+	width:100%;
+    position: fixed;
+    left: 0;
+	top:-72px;
+    z-index: 5;
+	text-align:center;
+	-webkit-transition: all .3s ease-out; 
+	-moz-transition: all .3s ease-out; 
+	-o-transition: all .3s ease-out; 
+	transition: all .3s ease-out;
+}
+#main.siteOpened>header
+{
+	-webkit-transform: translateY(100vh);
+	transform: translateY(100vh);
+}
+#main>header>div
+{
+	min-height:72px;
+	height:100%;
+	padding:20px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position:relative;
+}
+#main>header>div.site
+{
+	border-bottom:1px solid #555;
+}
+#main>header .actionbutton
+{
+	float:right;
+}
+#main>header .actionbutton button
+{
+	background-color:#6cbf2d !important;
+}
+
+/* Drawer */
+#main>header .drawer
+{
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+/*	max-height:600px;
+	overflow:auto;
+	*/
+}
+#main>header .drawer.closed
+{
+	height:0 !important;
+	overflow:hidden;
+}
+#main>header .drawer.opened
+{
+	height:auto;
+	color:#fff;
+	padding:20px 0 5px 0;
+	border-top:1px solid #555;
+	margin-top:22px;
+}

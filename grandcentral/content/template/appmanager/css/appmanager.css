@@ -1,0 +1,52 @@
+section[data-key="appstore"] .apps
+{
+}
+section[data-key="appstore"] .apps li a
+{
+	display:block;
+	border-radius:2px;
+	background:#fff;
+	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	height:300px;
+	margin:0 0 30px 0;
+	overflow:hidden;
+}
+section[data-key="appstore"] .apps li a:hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+}
+section[data-key="appstore"] .apps li a span
+{
+	display:block;
+}
+section[data-key="appstore"] .apps li a span.cover
+{
+	height:180px;
+	background-color:#999;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover; /* pour Chrome et Safari */
+	-moz-background-size: cover; /* pour Firefox */
+	-o-background-size: cover; /* pour Opera */
+	background-size: cover; /* version standardisée */
+	position:relative;
+}
+section[data-key="appstore"] .apps li a span.title
+{
+	font-size:25px;
+	bottom:0;
+	left:0;
+	width:100%;
+	padding:20px;
+	position:absolute;
+	color:#fff;
+	font-family: "ProximaNova-Regular";
+}
+section[data-key="appstore"] .apps li a span.descr
+{
+	color:#999;
+	padding:20px;
+	font-size:12px;
+}

@@ -1,0 +1,90 @@
+/********************************************************************************************/
+/* attr
+/********************************************************************************************/
+/* Actions */
+[data-type="attr"] li .handle
+{
+	position:absolute;
+	left:10px;
+	top:15px;
+	color:#999;
+	opacity:0;
+}
+[data-type="attr"] li:hover .handle
+{
+	opacity:1;
+}
+/* For all */
+[data-type="attr"] .data:empty
+{
+	padding:50px 0;
+}
+[data-type="attr"] .data>li
+{
+	border:1px solid #F2F2F2;
+}
+[data-type="attr"] [data-key]
+{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	display:inline-block;
+	width:100%;
+}
+/* key and type */
+[data-type="attr"] [data-key="key"]
+{
+	width:80%;
+}
+[data-type="attr"] [data-key="key"] label
+{
+	width:31.3% !important;
+	cursor:pointer;
+}
+[data-type="attr"] [data-key="key"] .wrapper
+{
+	width:68.7% !important;
+}
+[data-type="attr"] [data-key="type"]
+{
+	width:20%;
+}
+[data-type="attr"] [data-key="type"] label
+{
+	display:none;
+}
+[data-type="attr"] [data-key="type"] .wrapper
+{
+	width:100%;
+}
+[data-type="attr"] [data-key="type"] .wrapper,
+[data-type="attr"] [data-key="type"] .wrapper input
+{
+	background:#F2F2F2;
+	text-transform:uppercase;
+}
+
+/* min, max, required */
+/*
+[data-type="attr"] [data-key="min"]
+{
+	width:50%;
+}
+[data-type="attr"] [data-key="min"] label
+{
+	width:51% !important;
+}
+[data-type="attr"] [data-key="min"] .wrapper
+{
+	width:49% !important;
+}
+[data-type="attr"] [data-key="max"]
+{
+
+	width:50%;
+}
+[data-type="attr"] [data-key="max"] .wrapper
+{
+	width:75% !important;
+}
+*/

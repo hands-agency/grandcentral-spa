@@ -1,0 +1,226 @@
+/********************************************************************************************/
+/* All fields
+/********************************************************************************************/
+/* Placeholders */
+::-webkit-input-placeholder
+{
+   color:#ddd;
+}
+:-moz-placeholder
+{
+   color:#ddd;
+}
+
+/********************************************************************************************/
+/* Hide away submit buttons
+/********************************************************************************************/
+form button[type="submit"]
+{
+	/* This is disgusting, but Chrome doesn't like display:none */
+/*	position: absolute; width: 1px; height: 1px; left: -9999px; */
+}
+
+/********************************************************************************************/
+/* Text fields
+/********************************************************************************************/
+ol>li input[type="text"],
+ol>li input[type="number"],
+ol>li input[type="password"],
+ol>li select,
+ol>li textarea
+{
+}
+ol>li input[type="text"],
+ol>li input[type="number"],
+ol>li input[type="password"],
+ol>li textarea
+{
+	width:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select,
+textarea
+{
+	background:transparent;
+	border:1px solid transparent;
+	padding:7px;
+	margin:0;
+	resize:none;
+	font-family: "ProximaNova-Regular";
+	color:#666666;
+	font-size:1em;
+	line-height:1.4em;
+}
+select
+{
+	display:inline-block;
+	background:#fff;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position: relative;
+	border-radius:2px;
+}
+select:before
+{
+	content: '';
+	position: absolute;
+	top: 50%;
+	right:5px;
+	width: 10px;
+	height: 10px;
+	pointer-events: none;
+	border:1px solid #ccc;
+}
+
+/********************************************************************************************/
+/* Select
+/********************************************************************************************/
+ol>li[data-type="select"] .select2-container
+{
+	width:100%;
+}
+
+/********************************************************************************************/
+/* Bool
+/********************************************************************************************/
+ol>li[data-type="bool"] .wrapper
+{
+}
+ol>li[data-type="bool"] .wrapper .field
+{
+	min-height:25px;
+	padding-top:15px !important;
+}
+
+/********************************************************************************************/
+/* Textarea
+/********************************************************************************************/
+ol>li textarea
+{
+	min-height:170px;
+}
+
+/********************************************************************************************/
+/* General
+/********************************************************************************************/
+ol>li[data-type="code"] textarea
+{
+	font-family:Courier;
+}
+
+/********************************************************************************************/
+/* Radios & checkboxes */
+/********************************************************************************************/
+ol>li .radio,
+ol>li .checkbox
+{
+	font-size:0.9em;
+	padding:1px 1px 0 1px;
+}
+ol>li[data-type="radio"] li,
+ol>li[data-type="checkbox"] li
+{
+	padding:5px;
+	margin-bottom:1px;
+}
+ol>li[data-type="radio"] li.on,
+ol>li[data-type="checkbox"] li.on
+{
+	background:#eee;
+}
+ol>li[data-type="radio"] input,
+ol>li[data-type="checkbox"] input
+{
+	float:left;
+	width:auto;
+	margin:0;
+}
+ol>li[data-type="radio"] li span,
+ol>li[data-type="checkbox"] li span
+{
+}
+ol>li[data-type="radio"] li label span,
+ol>li[data-type="checkbox"] li label span
+{
+	margin-left:20px;
+	display:block;
+}
+ol>li[data-type="radio"] .title,
+ol>li[data-type="checkbox"] .title
+{
+}
+ol>li[data-type="radio"] .descr,
+ol>li[data-type="checkbox"] .descr
+{
+	display:none;
+	color:#999999;
+}
+ol>li[data-type="radio"] li.on .descr,
+ol>li[data-type="checkbox"] li.on .descr
+{
+	display:block;
+}
+
+/********************************************************************************************/
+/* Some extra style for specific fields
+/********************************************************************************************/
+ol>li[data-key="title"] label
+{
+	padding-top:27px !important;
+}
+ol>li[data-key="title"] input
+{
+	font-size:30px !important;
+}
+
+/********************************************************************************************/
+/* Labels for full lengh fields
+/********************************************************************************************/
+ol>li[data-type="wysiwyg"],
+ol>li[data-type="multipleselect"],
+ol>li[data-type="attr"],
+ol>li[data-type="rel"],
+ol>li[data-type="media"],
+ol>li[data-type="pagetype"]
+{
+	padding:0px 0px 3px 0px !important;
+}
+ol>li[data-type="wysiwyg"]>label,
+ol>li[data-type="multipleselect"]>label,
+ol>li[data-type="attr"]>label,
+ol>li[data-type="rel"]>label,
+ol>li[data-type="media"]>label,
+ol>li[data-type="pagetype"]>label
+{
+	float:none !important;
+	display:block !important;
+	width:auto !important;
+	padding:15px 0 !important;
+	text-align:center !important;
+	border-bottom:1px solid #eee;
+}
+ol>li[data-type="wysiwyg"]>.wrapper,
+ol>li[data-type="multipleselect"]>.wrapper,
+ol>li[data-type="attr"]>.wrapper,
+ol>li[data-type="rel"]>.wrapper,
+ol>li[data-type="media"]>.wrapper,
+ol>li[data-type="pagetype"]>.wrapper
+{
+	width:auto !important;
+	display:block !important;
+}
+ol>li[data-type="wysiwyg"]>.wrapper>.field,
+ol>li[data-type="multipleselect"]>.wrapper>.field,
+ol>li[data-type="attr"]>.wrapper>.field,
+ol>li[data-type="rel"]>.wrapper>.field,
+ol>li[data-type="media"]>.wrapper>.field,
+ol>li[data-type="pagetype"]>.wrapper>.field
+{
+	border:none !important;
+}

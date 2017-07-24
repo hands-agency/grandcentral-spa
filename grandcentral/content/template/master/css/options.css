@@ -1,0 +1,153 @@
+/********************************************************************************************/
+/* Options
+/********************************************************************************************/
+header .options
+{
+	position:absolute;
+	padding-left:80px;
+}
+header .options>li
+{
+	background:#fff;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	padding:0 10px;
+	display:inline-block !important;
+	position:relative;
+	cursor:pointer !important;
+	text-align:center;
+}
+
+/* Filter */
+#filter
+{
+	width:30px;
+	padding:0 !important;
+	background:#777 !important;
+}
+#filter.on
+{
+	background:#419BF9 !important;
+	color:#fff !important;
+}
+
+/* Local search */
+header .options #refine
+{
+	padding:0 0 0 7px;
+	display:none; /* Starts hidden, show if necessary */
+}
+header .options #refine input
+{
+	border:0;
+	font-size:12px;
+	padding:0;
+	margin:0 0 0 5px;
+	width:130px;
+	background:transparent;
+}
+
+/********************************************************************************************/
+/* Options drop
+/********************************************************************************************/
+.optionsList
+{
+/*	display:none; */
+}
+.optionsList>li
+{
+	display:inline-block;
+	min-width:175px;
+	padding:0 10px;
+	vertical-align:top;
+}
+.optionsList li ul
+{
+	max-height:250px;
+	overflow:auto;
+}
+.optionsList li ul li
+{
+	padding:5px 10px;
+	border-bottom:1px solid #666;
+	border-radius:2px;
+}
+.optionsList li ul li[data-value]
+{
+	cursor:pointer;
+}
+.optionsList li ul li.legend
+{
+	font-family:'ProximaNova-Bold';
+	font-size:13px;
+	border:none;
+	padding-bottom:20px;
+	text-transform:uppercase;
+	color:#F2F2F2;
+	position:relative;
+}
+.optionsList li ul li.legend:after
+{
+	content:"⇣";
+	position:absolute;
+	bottom:0px;
+	left:50%;
+	margin-left:-10px;
+	width:20px;
+	color:#999;
+}
+.optionsList li ul li .title
+{
+	font-family:'ProximaNova-Regular';
+	font-size:12px;
+	color:#ccc;
+}
+.optionsList li ul li:hover .title
+{
+	color:#419BF9;
+}
+.optionsList li ul li.on
+{
+	background:#419BF9;
+}
+.optionsList li ul li.on .title
+{
+	color:#fff;
+}
+.optionsList li ul li .descr
+{
+	display:none;
+}
+.optionsList li ul:first-child
+{
+}
+
+/********************************************************************************************/
+/* Search drop
+/********************************************************************************************/
+.searchList
+{
+	position:relative;
+}
+.searchList:before
+{
+	color:#bbb !important;
+}
+.searchList li
+{
+	padding:10px;
+	border:1px solid #666;
+	display:inline-block;
+	width:150px;
+	height:50px;
+	border-radius:2px;
+	margin:5px;
+	font-family:'ProximaNova-Regular';
+	font-size:12px;
+	text-align:center;
+	vertical-align:top;
+}

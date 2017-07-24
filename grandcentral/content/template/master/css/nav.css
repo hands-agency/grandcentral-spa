@@ -1,0 +1,290 @@
+/********************************************************************************************/
+/* Navigation
+/********************************************************************************************/
+#nav
+{
+	padding:100px 0 !important;
+	height:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	color:#fff;
+}
+#nav a
+{
+	color:#fff;
+}
+#nav>button.close
+{
+	position:absolute;
+	top:15px;
+	right:15px;
+	z-index:2;
+	color:#fff;
+	z-index:10;
+}
+
+/* Items */
+#nav .item
+{
+}
+
+/* General */
+#nav .general
+{
+}
+#nav .general h1
+{
+	font-family:'ProximaNova-Bold';
+	font-size:60px;
+	text-transform:uppercase;
+	margin:0 0px 15px 0px;
+	line-height:60px;
+}
+#nav .general h1 a
+{
+	padding:10px 10px 5px 10px;
+	border-radius:2px;
+	display:inline-block;
+	border:1px solid transparent;
+}
+#nav .general h1 a:hover
+{
+	border-color:rgba(65,155,249, 0.4);
+}
+
+/********************************************************************************************/
+/* Display modes
+/********************************************************************************************/
+#nav ul.big,
+#nav ul.medium,
+#nav ul.small
+{
+	font-family:'ProximaNova-Thin';
+	margin:0 0 15px 0;
+	padding:0 0 15px 0;
+	float:left;
+	clear:left;
+}
+#nav ul.big a,
+#nav ul.medium a,
+#nav ul.small a
+{
+	border-radius:3px;
+	padding:0 10px;
+	display:inline-block;
+}
+#nav ul.big a span,
+#nav ul.medium a span,
+#nav ul.small a span
+{
+	display:inline-block;
+}
+#nav ul.big a:hover,
+#nav ul.medium a:hover,
+#nav ul.small a:hover
+{
+	background:rgba(65,155,249, 0.4);
+}
+
+/* Big */
+#nav ul.big
+{
+	border-bottom:1px solid rgba(255,255,255,0.2);
+}
+#nav ul.big li
+{
+	font-size:40px;
+	text-transform:uppercase;
+	position:relative;
+}
+#nav ul.big li:before
+{
+	position:absolute;
+	content:'›';
+	left:-40px;
+	top:0px;
+	opacity:0;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+#nav ul.big li:hover:before
+{
+	left:-20px;
+	opacity:1;
+}
+
+/* Medium */
+#nav ul.medium
+{
+	border-bottom:1px solid rgba(255,255,255,0.2);
+}
+#nav ul.medium li
+{
+	font-size:30px;
+	text-transform:uppercase;
+}
+#nav ul.medium li a
+{
+	position:relative;
+	margin:0 5px;
+}
+#nav ul.medium li a:not(:first-child):before
+{
+	content:'•';
+	position:absolute;
+	left:-15px;
+}
+
+/* small */
+#nav ul.small
+{
+	font-size:20px;
+}
+
+/* In hives */
+#nav ul.inhive
+{
+	font-size:0;
+	padding:50px 50px 0 100px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	float:right;
+}
+#nav ul.inhive li
+{
+	background:transparent;
+	display:inline-block;
+	margin:15px 0;
+	position:relative;
+	margin-left:-40px !important;
+	vertical-align:top;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+	background:#fff;
+}
+#nav ul.inhive li:hover
+{
+	background:#419BF9;
+}
+#nav ul.inhive li:nth-child(even)
+{
+	margin-top:95px !important; /* Optical alignment */
+}
+
+#nav ul.inhive li,
+#nav ul.inhive li:before,
+#nav ul.inhive li:after
+{
+	/* easy way: width is height * 1.732
+	actual formula is 2*(width/(2*Math.tan(Math.PI/6)))
+	remove border-radius for straight edges on hexagons */
+	height: 50px;
+	width: 86px;
+	border-radius: 5%/20%;
+}
+#nav ul.inhive li.minor,
+#nav ul.inhive li.minor:before,
+#nav ul.inhive li.minor:after
+{
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	background:transparent;
+}
+#nav ul.inhive li:before
+{
+	background-color: inherit;
+	content: "";
+	position: absolute;
+	left: 0;
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+        -ms-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+	        transform: rotate(-60deg);
+}
+#nav ul.inhive li:after
+{
+	background-color: inherit;
+	content: "";
+	position: absolute;
+	left: 0;
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+	        transform: rotate(60deg);
+}
+
+#nav ul.inhive li a,
+#nav ul.inhive li .icon
+{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	text-align:center;
+}
+#nav ul.inhive li a
+{
+	z-index:2;
+	line-height:66px; /* Optical alignment */
+	overflow:hidden;
+}
+#nav ul.inhive li .title
+{
+	font-family:'ProximaNova-Bold';
+	letter-spacing:1px;
+	text-transform:uppercase;
+	font-size:8px;
+	display:inline-block;
+	vertical-align:middle;
+	line-height:normal;
+	z-index:10;
+	position:relative;
+	margin:0 10px;
+	padding:0 0 3px 0;
+	color:#111;
+	border-bottom:3px solid transparent;
+}
+#nav ul.inhive li.minor .title
+{
+	color:#fff;
+}
+#nav ul.inhive li:hover .title
+{
+	border-color:#fff;
+	color:#fff;
+}
+#nav ul.inhive li.minor:hover .title
+{
+	border-color:#fff;
+}
+#nav ul.inhive li .icon
+{
+	color:rgba(0,0,0,0.1);
+	font-size:50px;
+	line-height:0;
+}
+
+#nav ul.inhive li.add .title
+{
+	font-size:40px;
+	line-height:40px;
+	border:none !important;
+}
+#nav ul.inhive li:not(:hover).add
+{
+	opacity:0.3;
+}
+#nav ul.inhive li.add:hover,
+#nav ul.inhive li.add:hover:before,
+#nav ul.inhive li.add:hover:after
+{
+	background:#6cbf2d;
+}

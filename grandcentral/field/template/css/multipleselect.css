@@ -1,0 +1,189 @@
+/********************************************************************************************/
+/* Multiple Select
+/********************************************************************************************/
+ol>li[data-type="multipleselect"] .field {
+	border:none !important;
+}
+ol>li[data-type="multipleselect"] .field .selected,
+ol>li[data-type="multipleselect"] .field .available
+{
+	width:49.5%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:10px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	position:relative;
+}
+
+/********************************************************************************************/
+/* Available & selected
+/********************************************************************************************/
+ol>li[data-type="multipleselect"] .field li
+{
+	border:1px solid #dedede;
+	background:#fff;
+	margin:1px 0;
+	height:34px;
+	line-height:34px;
+	font-size:0.9em;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	position:relative;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+li.ui-draggable-dragging
+{
+}
+ol>li[data-type="multipleselect"] .field li:hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+}
+ol>li[data-type="multipleselect"] .field li[data-status="asleep"]
+{
+	opacity:0.6;
+}
+
+/* Fields */
+ol>li[data-type="multipleselect"] .field li .icon
+{
+	width:17px;
+	height:17px;
+	float:left;
+	margin:0 !important;
+	display:none;
+}
+
+ol>li[data-type="multipleselect"] .field li .title
+{
+	/*cursor:pointer;*/
+	padding:0 23px 0 10px;
+}
+ol>li[data-type="multipleselect"] .field li .title:not(:hover)
+{
+	color:#333;
+}
+ol>li[data-type="multipleselect"] .field li .delete
+{
+	top:1px;
+	right:0px;
+	display:none;
+}
+ol>li[data-type="multipleselect"] .field li:hover .delete
+{
+	display:block;
+}
+
+/* Add */
+ol>li[data-type="multipleselect"] .field .add
+{
+	text-align:center;
+	margin-top:5px;
+}
+ol>li[data-type="multipleselect"] .field .add button
+{
+	cursor:pointer;
+	border:none !important;
+	height:30px;
+	display:block;
+	line-height:30px;
+	width:100%;
+	padding:0 !important;
+}
+ol>li[data-type="multipleselect"] .field .add button:after
+{
+	content:"+";
+	font-size:28px;
+}
+ol>li[data-type="multipleselect"] .field .add:hover button:
+{
+	color:#419BF9;
+}
+
+/********************************************************************************************/
+/* Selected
+/********************************************************************************************/
+ol>li[data-type="multipleselect"] .field .selected
+{
+	float:left;
+	border:1px dashed #ddd;
+	-webkit-transition: all .15s ease-out;
+	-moz-transition: all .15s ease-out;
+	-o-transition: all .15s ease-out;
+	transition: all .15s ease-out;
+}
+ol>li[data-type="multipleselect"] .field .selected li:not(.ui-draggable-dragging)
+{
+	width:100% !important;
+	cursor:ns-resize;
+}
+ol>li[data-type="multipleselect"] .field .selected li .delete
+{
+	opacity:0.2;
+}
+ol>li[data-type="multipleselect"] .field .selected li:hover .delete
+{
+	opacity:1;
+}
+/* Nodata */
+ol>li[data-type="multipleselect"] .field .selected ol
+{
+	min-height:100px;
+}
+ol>li[data-type="multipleselect"] .field .selected ol:empty
+{
+	line-height:100px;
+}
+
+/********************************************************************************************/
+/* Available
+/********************************************************************************************/
+ol>li[data-type="multipleselect"] .field .available
+{
+	float:right;
+	background:#F3F3F3;
+}
+ol>li[data-type="multipleselect"] .field .available.focus
+{
+	border-color: #FF0000;
+	-webkit-box-shadow: 0 0 4px #FF0000;
+	box-shadow: 0 0 4px #FF0000;
+}
+ol>li[data-type="multipleselect"] .field .available ul
+{
+	overflow:auto;
+	max-height:250px;
+}
+ol>li[data-type="multipleselect"] .field .available ul li
+{
+	cursor:move;
+}
+ol>li[data-type="multipleselect"] .field .available ul li .delete
+{
+	display:none;
+}
+
+/* Refine */
+ol>li[data-type="multipleselect"] .refine input
+{
+	width:100% !important;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin:0 0 5px 0;
+	padding:7px 5px;
+	border:1px solid #ccc;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}

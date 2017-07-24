@@ -1,0 +1,232 @@
+/********************************************************************************************/
+/* As a full section
+/********************************************************************************************/
+section .noteList,
+section .noteForm
+{
+	margin:auto;
+	max-width:700px;
+}
+section .noteList>li:not(.more),
+section .noteForm
+{
+	font-size: 12px;
+	position:relative;
+	padding:10px 0;
+	clear:left;
+	margin:auto;
+}
+
+/* More */
+section .noteList>li.more
+{
+
+}
+
+/* Divider */
+section .noteList>li.divider
+{
+	border-bottom:1px solid #ccc;
+	padding-bottom:10px;
+	margin-bottom:10px;
+	text-align:center;
+}
+section .noteList>li.divider h2
+{
+	background:#fff;
+	padding:0 10px;
+	display:inline;
+	position:relative;
+	top:16px;
+	color:#cecece;
+}
+
+/* Loading */
+section .noteList>li.loading
+{
+	text-align:center;
+	color:#ccc;
+}
+
+/* Fields */
+section .noteList>li>*:not(.icon),
+section .noteForm>*:not(.icon)
+{
+	margin-left:57px;
+}
+section .noteList>li>.date
+{
+	text-align:center;
+	color:#ccc;
+	margin-bottom:15px;
+}
+section .noteList>li>.icon,
+section .noteForm>.icon
+{
+	border:1px dashed #ccc;
+	height:40px;
+	width:40px;
+	overflow:hidden;
+	border-radius:50%;
+	margin-top:-20px;
+	position:absolute;
+	top:50%;
+	float:left;
+	cursor:pointer;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+section .noteList>li>.icon:hover
+{
+	transform:scale(1.2);
+	-moz-transform:scale(1.2);
+	-ms-transform:scale(1.2);
+	-webkit-transform:scale(1.2);
+	-o-transform:scale(1.2);
+}
+section .noteList>li>.owner
+{
+	font-weight:bold;
+	margin-bottom:5px;
+	display:none;
+}
+section .noteList>li>.text
+{
+	margin-bottom:5px;
+	background:#fff;
+	padding:15px;
+	border-radius:2px;
+	position:relative;
+	font-size:12px;
+	line-height:1.4em;
+	color:#333;
+	font-family:"ProximaNova-Regular";
+	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.18);
+}
+section .noteList>li>.text:before
+{
+	content:'';
+	position:absolute;
+	left:-7px;
+	top:50%;
+	margin-top:-7px;
+	width: 0; 
+	height: 0; 
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent; 
+	border-right:7px solid #fff; 
+}
+
+/* Form */
+section .noteForm
+{
+	border-top:1px solid #ccc;
+	padding:30px 0 0px 0;
+}
+section .noteForm form label,
+section .noteForm form [data-control]
+{
+	display:none;
+}
+section .noteForm form textarea
+{
+	background:#fff;
+	position:relative;
+	font-size:12px;
+	line-height:1.4em;
+	color:#666;
+	font-family:"ProximaNova-Regular";
+	padding:15px;
+	border-radius:2px;
+	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.18);
+}
+section .noteForm form textarea[disabled]
+{
+	color:#ccc !important;
+}
+
+/********************************************************************************************/
+/* Inline in a list
+/********************************************************************************************/
+section div.notes .noteList
+{
+	position:relative;
+	font-size:12px;
+	line-height:14px !important;
+}
+section div.notes .noteList:after
+{
+	position:absolute;
+	top:-7px;
+	left:10px;
+	content:'';
+	border-style: solid;
+	border-width: 0 7px 7px 7px;
+	border-color: transparent transparent #eff2f4 transparent;
+}
+
+/* Nodata */
+section div.notes .nodata
+{
+	display:none;
+}
+
+
+/* Lines */
+section div.notes .noteList>li,
+section div.notes .noteForm
+{
+	background:#eff2f4;
+	padding:7px;
+	margin-bottom:1px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+	-moz-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+	-o-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+	box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+}
+section div.notes .noteList>li>*:not(.icon),
+section div.notes .noteForm>*:not(.icon)
+{
+	margin-left:52px;
+}
+
+/* Fields */
+section div.notes .noteList>li>.date
+{
+	position:relative;
+	top:0;
+	left:0;
+}
+section div.notes .noteList li .icon,
+section div.notes .noteForm .icon
+{
+	float:left;
+}
+/*
+section div.notes .noteList li .author
+{
+	font-weight:bold;
+	margin-right:5px;
+}
+section div.notes .noteList li .option
+{
+	position:absolute;
+	top:10px;
+	right:10px;
+	display:none;
+}
+section div.notes .noteList li:hover .option
+{
+	display:block;
+}
+
+/* Add */
+/*
+section div.notes .noteList form textarea
+{
+	width:100%;
+	border:1px solid #ddd;
+}

@@ -1,0 +1,93 @@
+#eventstream
+{
+	display:none;
+}
+.siteOpened #eventstream
+{
+	display:none !important;
+}
+#eventstream ul
+{
+	list-style-type:disc;
+	color:#419BF9;
+	padding:0 0 0 96px;
+	text-align:left;
+}
+#eventstream ul:not(:empty)
+{
+	margin-bottom:15px;
+}
+#eventstream ul li
+{
+	margin-bottom: 1px;
+	font-size: 12px;
+	position:relative;
+/*	display:none;*/
+}
+#eventstream ul li a,
+#eventstream ul li span
+{
+	color:#F2F2F2;
+	-webkit-transition: all .05s ease-out; 
+	-moz-transition: all .05s ease-out; 
+	-o-transition: all .05s ease-out; 
+	transition: all .05s ease-out;
+}
+#eventstream ul li a:hover
+{
+	color:#419BF9;
+}
+#eventstream ul li .item
+{
+	border:1px solid rgba(255, 255, 255, 0.1);
+	text-transform:uppercase;
+	border-radius:2px;
+	font-size:10px;
+	padding:2px 3px;
+}
+#eventstream ul li:hover
+{
+	opacity:1;
+}
+#eventstream ul li:hover a
+{
+	opacity:1 !important;
+}
+#eventstream ul li:not(:first-child):before
+{
+	content:'';
+	width:1px;
+	position:absolute;
+	border-left:2px solid #419BF9;
+	height:7px;
+	bottom:10px;
+	left:-13px;
+	opacity:0.5;
+}
+#eventstream ul.everybodyelses li:first-child:before
+{
+	content:'';
+	width:10px;
+	position:absolute;
+	border-top:1px dotted #ccc;
+	height:0px;
+	top:0px;
+	left:-17px;
+}
+#eventstream ul li a.undo,
+#eventstream ul li a.compare,
+#eventstream ul li a.edit
+{
+	opacity:0;
+	background:#419BF9;
+	text-transform:uppercase;
+	border-radius:2px;
+	font-size:10px;
+	padding:2px 3px;
+	color:#FFF;
+}
+#eventstream ul li a.undo:before,
+#eventstream ul li a.compare:before
+{
+	content:' • ';
+}

@@ -1,0 +1,138 @@
+/********************************************************************************************/
+/* Choices
+/********************************************************************************************/
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"]
+{
+}
+.greenbutton-choices
+{
+	border-radius:3px;
+	margin:auto auto 15px auto;
+	background:#fff;
+	font-family:"ProximaNova-Regular";
+	overflow:hidden;
+	position:relative;
+	padding:7px 7px 7px 23px;
+}
+.greenbutton-choices li
+{
+	float:left;
+	width:33.333%;
+	margin:7px 0;
+}
+.greenbutton-choices li .wrapper
+{
+	-webkit-transition: all .05s ease-out; 
+	-moz-transition: all .05s ease-out; 
+	-o-transition: all .05s ease-out; 
+	transition: all .05s ease-out;
+}
+.greenbutton-choices li:hover .wrapper
+{
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.greenbutton-choices li .wrapper
+{
+	margin:0 7px;
+	border-radius:2px;
+	height:170px;
+	position:relative;
+	background:#ddd;
+}
+.greenbutton-choices li.title
+{
+	text-transform:uppercase;
+	text-align:center;
+	font-size:11px;
+	background:#fcfcfc;
+	letter-spacing:2px;
+	font-family:"ProximaNova-Bold";
+	color:#999;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:30px;
+	margin:0;
+	opacity:0.7;
+}
+.greenbutton-choices:hover li.title
+{
+	color:#444;
+}
+.greenbutton-choices li.title span
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+.greenbutton-choices li>.wrapper>a
+{
+	padding:15px;
+	display:block;
+	height:120px;
+	cursor:pointer;
+	position:relative;
+	text-align:center;
+}
+.greenbutton-choices li:hover>.wrapper
+{
+	background:#6cbf2d;
+}
+.greenbutton-choices li>.wrapper i:before
+{
+	padding:10px 0 15px 0;
+	display:block;
+	font-size:40px;
+	color:#fff;
+}
+.greenbutton-choices li>.wrapper .title
+{
+	color:#fff;
+	text-transform:uppercase;
+	font-size:13px;
+}
+/* And... */
+.greenbutton-choices li .and
+{
+	background:rgba(255,255,255,0.3);
+	padding:15px 0;
+	position:absolute;
+	bottom:0;
+	text-align:center;
+	width:100%;
+}
+.greenbutton-choices li:hover .and
+{
+}
+.greenbutton-choices li .and>a
+{
+	cursor:pointer;
+	display:inline-block;
+	margin:0 7px;
+}
+.greenbutton-choices li .and>a:hover
+{
+	opacity:1;
+}
+.greenbutton-choices li .and>a:before
+{
+	font-family:"feather";
+	font-size:17px;
+	color:#fff;
+}
+.greenbutton-choices li .and .back:before
+{
+	content:'\e039';
+}
+.greenbutton-choices li .and .reach:before
+{
+	content:'\e000';
+}
+.greenbutton-choices li .and .new:before
+{
+	content:'\e040';
+}
