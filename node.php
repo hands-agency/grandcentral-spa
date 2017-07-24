@@ -17,10 +17,10 @@
       registry::getInstance();
 
 
-      $b = new biggie();
-      $b->generate_route();echo 'generate_route(). Done.<br>';
-      $b->generate_less();echo 'generate_less(). Done.<br>';
-      $b->generate_templates();echo 'generate_templates(). Done.<br>';
+      // $b = new biggie();
+      // $b->generate_route();echo 'generate_route(). Done.<br>';
+      // $b->generate_less();echo 'generate_less(). Done.<br>';
+      // $b->generate_templates();echo 'generate_templates(). Done.<br>';
       // $b->generate_master();echo 'generate_master(). Done.<br>';
       // echo "<pre>";print_r($a);echo "</pre>";exit;
       //	Display the current page
