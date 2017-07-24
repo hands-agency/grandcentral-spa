@@ -15,14 +15,11 @@
       sentinel::getInstance();
       //	Loading the registry
       registry::getInstance();
-
-
-      // $b = new biggie();
-      // $b->generate_route();echo 'generate_route(). Done.<br>';
-      // $b->generate_less();echo 'generate_less(). Done.<br>';
-      // $b->generate_templates();echo 'generate_templates(). Done.<br>';
-      // $b->generate_master();echo 'generate_master(). Done.<br>';
-      // echo "<pre>";print_r($a);echo "</pre>";exit;
+      // biggie generation
+      $b = new biggie();
+      $b->generate_route();
+      $b->generate_less();
+      $b->generate_templates();
       //	Display the current page
       echo i('page', current);
       break;
