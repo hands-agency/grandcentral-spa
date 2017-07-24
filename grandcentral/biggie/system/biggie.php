@@ -118,14 +118,22 @@ class biggie
 		$dir = new dir($app->get_templateroot().'/'.explode('/',$template['template'])[1]);
 		// echo "<pre>";print_r($dir->get(true));echo "</pre>";
 		$dir->get(true);
-		$lessFile = array_values($dir->refine('.less'));
+		$filteredDir = array_values($dir->refine('.less'));
+		$lessFile = [];
+		if (!empty($filteredDir))
+		{
+			foreach ($filteredDir as $less)
+			{
+				$lessFile[] = $less->get_root();
+			}
+		}
 		$jsFile = array_values($dir->refine('.js'));
 		// echo "<pre>";print_r($lessFile);echo "</pre>";
 
 		$asset = [
 			'app' => $template['app'],
 			'root' => $template['template'],
-			'less' => isset($lessFile[0]) ? $lessFile[0]->get_root() : '',
+			'less' => $lessFile,
 			'js' => isset($jsFile[0]) ? $jsFile[0]->get_root() : '',
 			'param' => $template['param']
 		];
@@ -198,23 +206,18 @@ class biggie
 
 	public function generate_asset($version, $asset)
 	{
-		// echo "<pre>";print_r(registry::get(registry::current_index,'site')['version']['lang']);echo "</pre>";
-		// echo "<pre>";print_r($version['lang']);echo "</pre>";
-		// registry::get(registry::current_index,'site')['version']['lang'] = $version['lang'];
-		// registry::get(registry::current_index,'version',$version);
-		// echo "<pre>";print_r(registry::get(registry::current_index,'site')['version']['lang']);echo "</pre>";
-		// echo "<pre>";print_r($lang);echo "</pre>";
 		// generate all templates for reader detail
 		if ($asset['type'] == 'reader_detail')
 		{
-			// echo "<pre>";print_r($asset);echo "</pre>";
-			$items = i($asset['template']['param']['item'], all);
+			// manage query params (for mirror site or async lang site)
+			$item = i($asset['template']['param']['item']);
+			$params = isset($item['version']) ? ['version' => $version->get_nickname()] : all;
+			$items = i($asset['template']['param']['item'], $params);
+			// generate item template
 			foreach ($items as $item)
 			{
 				$asset['template']['param']['item'] = $item;
 				$asset['template']['file'] = $item['url'];
-				// echo "<pre>";print_r($asset);echo "</pre>";
-				// $asset['template'] = $item;
 				$this->generate_template($version, $asset);
 			}
 		}
@@ -243,10 +246,8 @@ class biggie
 		$file->set($html);
 		$dir = $file->get_dir();
 		if (!is_dir($dir)) mkdir($dir);
-		// echo "<pre>";print_r($dir);echo "</pre>";
 		$file->save();
-		// echo "<pre><hr><h2>";print_r($root);echo "<h2></pre>";
-		// echo "<pre>";print_r($html);echo "</pre>";
+
 	}
 }
 ?>
