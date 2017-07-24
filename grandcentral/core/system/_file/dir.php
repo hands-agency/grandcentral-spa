@@ -17,7 +17,7 @@ class dir implements Iterator
 {
 	protected $key;
 	protected $root;
-	protected static $nogood = array('Thumbs.db', '.DS_Store', '.svn', '.', '..');
+	protected static $nogood = array('Thumbs.db', '.DS_Store', '.svn', '.gitignore', '.', '..');
 	protected static $nogoodsimple = array('.', '..');
 	public $data = array();
 
