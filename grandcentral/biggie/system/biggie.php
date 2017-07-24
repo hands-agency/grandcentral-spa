@@ -83,7 +83,7 @@ class biggie
 				{
 					$assets = array_merge($assets, $this->get_reader_asset($page));
 				}
-				elseif (isset($page['type']['master']) && isset($page['type']['master']['template']))
+				elseif (isset($page['type']['master']) && !empty($page['type']['master']['template']))
 				{
 					$assets[] = $this->get_page_asset($page);
 				}
