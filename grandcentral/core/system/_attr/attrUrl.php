@@ -158,7 +158,7 @@ class attrUrl extends attrArray
 	{
 		$this->params['table'] = $item->get_table();
 		$this->params['env'] = $item->get_env();
-		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
+		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : i($this->params['env'], current)['version'];
 		$this->params['live'] = $item['live'];
 		$this->params['itemkey'] = $item['key']->get();
 		$this->params['nickname'] = $item->get_nickname();
@@ -235,15 +235,18 @@ class attrUrl extends attrArray
 	{
 		$url = '';
 		// version url
-		if (is_null($this->params['version']))
-		{
-			$url = i($this->params['env'], current)['version']->get_url();
-		}
-		else
-		{
-			$version = constant(mb_strtoupper($this->params['env']).'_VERSION');
-			$url = constant('VERSION_'.mb_strtoupper($version));
-		}
+		// if (is_null($this->params['version']))
+		// {
+		$version = registry::get(registry::current_index,'version');
+		$url = $version->get_url();
+		// echo "<pre>";print_r($url);echo "</pre>";exit;
+			// echo "<pre>sdfs";print_r($url);echo "</pre>";exit;
+		// }
+		// else
+		// {
+		// 	$version = constant(mb_strtoupper($this->params['env']).'_VERSION');
+		// 	$url = constant('VERSION_'.mb_strtoupper($version));
+		// }
 		// reader
 		if ($this->params['table'] != 'page')
 		{
@@ -257,7 +260,7 @@ class attrUrl extends attrArray
 					if (mb_substr($tmp, 0, 1) == '{')
 					{
 						$t = json_decode($tmp, true);
-						$tmp = $t[i($this->params['env'], current)['version']['lang']->get()];
+						$tmp = $t[$version['lang']->get()];
 					}
 
 					if ($tmp != '/') $url .= $tmp;
@@ -267,9 +270,9 @@ class attrUrl extends attrArray
 			}
 		}
 
-		$url = mb_substr($url, mb_strlen(DOMAIN_URL));
+		// $url = mb_substr($url, mb_strlen(DOMAIN_URL));
 		// return
-		return $url.$this->get_current();
+		return mb_substr($url,mb_strlen(DOMAIN_URL)).$this->get_current();
 
 	}
 /**
