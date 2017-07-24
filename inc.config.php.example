@@ -44,8 +44,8 @@
 	$site[] = array(
 		'key' => 'boilerplate',
 		'url' => array(
-			'fr' => 'http://gc-spa.site/fr',
-			'en' => 'http://gc-spa.site/en'
+			'en' => 'http://gc-spa.site/en',
+			'fr' => 'http://gc-spa.site/fr'
 		),
 		'db_type' => 'mysql',
 		'db_host' => 'localhost',
