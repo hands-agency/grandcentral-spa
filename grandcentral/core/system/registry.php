@@ -230,6 +230,7 @@ class registry
 			}
 			$classes = $tmp;
 		}
+		asort($classes);
 
 		return $classes;
 	}
