@@ -129,6 +129,7 @@ class biggie
 			}
 		}
 		$jsFile = array_values($dir->refine('.js'));
+		$js = '';
 		foreach ($jsFile as $js)
 		{
 			if ($js->get_extension() == 'js')
