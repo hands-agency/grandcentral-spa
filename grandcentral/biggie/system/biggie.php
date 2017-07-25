@@ -114,7 +114,8 @@ class biggie
 	public function get_template_asset($template)
 	{
 		// echo "<pre>";print_r($template);echo "</pre>";
-		$app = app($template['app'], $template['template'], $template['param'], 'site');
+		$params = isset($template['param']) ? $template['param'] : '';
+		$app = app($template['app'], $template['template'], $params, 'site');
 		$dir = new dir($app->get_templateroot().'/'.explode('/',$template['template'])[1]);
 		// echo "<pre>";print_r($dir->get(true));echo "</pre>";
 		$dir->get(true);
@@ -135,7 +136,7 @@ class biggie
 			'root' => $template['template'],
 			'less' => $lessFile,
 			'js' => isset($jsFile[0]) ? $jsFile[0]->get_root() : '',
-			'param' => $template['param']
+			'param' => $params
 		];
 		return $asset;
 	}
