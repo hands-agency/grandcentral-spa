@@ -14,5 +14,5 @@
 </ul>
 <?php endforeach ?>
 <?php else: ?>
-	<div class="nodata"><?=cst('nodata')?></div>
+	<div class="nodata"><?=cst('nodata', null, 'admin')?></div>
 <?php endif ?>

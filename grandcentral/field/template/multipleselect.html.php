@@ -6,7 +6,7 @@
 	<div class="field">
 		<input  type="hidden" name="<?= $_FIELD->get_name(); ?>" <?php if ($_FIELD->is_disabled()): ?>disabled="disabled" <?php endif ?>value="">
 		<div class="selected">
-			<ol data-nodata="<?= cst('MULTIPLESELECT_SELECTED_NODATA');?>"><?php foreach ($selected as $li): ?>
+			<ol data-nodata="<?= cst('MULTIPLESELECT_SELECTED_NODATA', null, 'admin');?>"><?php foreach ($selected as $li): ?>
 				<li data-item="<?=$li->get_nickname()?>">
 					<button class="delete" type="button"></button>
 					<div class="icon"></div>

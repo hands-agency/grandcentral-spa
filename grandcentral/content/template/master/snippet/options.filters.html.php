@@ -2,7 +2,7 @@
 	<?php foreach ($filter as $filter => $array) : ?>
 	<li>
 		<ul data-filter="<?=$filter?>" data-type="<?=$array['type']?>">
-		<li class="legend"><?=cst('OPTIONS_FILTERS_LEGEND_'.$filter, $filter)?></li>
+		<li class="legend"><?=cst('OPTIONS_FILTERS_LEGEND_'.$filter, $filter, 'admin')?></li>
 		<?php foreach ($array['data'] as $cell) : ?>
 		<?php
 		//	We can either have a bunch or some data
@@ -10,8 +10,8 @@
 			if (is_string($cell))
 			{
 				$key = $cell;
-				$title = cst('OPTIONS_FILTER_'.$filter.'_'.$cell.'_TITLE', $cell);
-				$descr =  cst('OPTIONS_FILTER_'.$filter.'_'.$cell.'_DESCR', $cell);
+				$title = cst('OPTIONS_FILTER_'.$filter.'_'.$cell.'_TITLE', $cell, 'admin');
+				$descr =  cst('OPTIONS_FILTER_'.$filter.'_'.$cell.'_DESCR', $cell, 'admin');
 			}
 			if (is_array($cell) OR is_object($cell))
 			{

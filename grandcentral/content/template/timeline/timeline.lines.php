@@ -22,11 +22,11 @@
 /********************************************************************************************/
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
-	
+
 //	Max Thumbnails and Titles to display
 	$maxTitle = 4;
 	$maxThumbnail = 3;
-	
+
 //	Initiate arrays
 	$clusters = array();
 	$bunches = array();
@@ -37,7 +37,7 @@
 	$limit = (isset($_POST['limit'])) ? $_POST['limit'] : trigger_error('You should have a limit', E_USER_WARNING);
 	$handled_item = isset($_POST['item']) ? $_POST['item'] : null;
 	$handled_id = isset($_POST['id']) ? $_POST['id'] : null;
-	
+
 /********************************************************************************************/
 //	Some dates
 /********************************************************************************************/
@@ -54,7 +54,7 @@
 	$period[] = array('key' => 'noon', 'date' => $now->format('Y-m-d 12:00:00'));
 	$period[] = array('key' => 'morning', 'date' => $now->format('Y-m-d 08:00:00'));
 	$period[] = array('key' => 'dawn', 'date' => $now->format('Y-m-d 06:00:00'));
-	
+
 //	Yesterday
 	$yesterday = new DateTime('yesterday');
 	$period[] = array('key' => 'yesterday_night', 'date' => $yesterday->format('Y-m-d 23:00:00'));
@@ -64,12 +64,12 @@
 	$period[] = array('key' => 'yesterday_noon', 'date' => $yesterday->format('Y-m-d 12:00:00'));
 	$period[] = array('key' => 'yesterday_morning', 'date' => $yesterday->format('Y-m-d 08:00:00'));
 	$period[] = array('key' => 'yesterday_dawn', 'date' => $yesterday->format('Y-m-d 06:00:00'));
-	
+
 /********************************************************************************************/
 //	Some data
 /********************************************************************************************/
 	$items = i('item', all)->set_index('key');
-	
+
 /********************************************************************************************/
 //	Some functions
 /********************************************************************************************/
@@ -87,7 +87,7 @@
 		//	Not far away
 			else if ($date > $period[$i+1]['date'] && $date < $period[$i]['date'])
 			{
-				return cst('timeline_period_'.$period[$i]['key']);
+				return cst('timeline_period_'.$period[$i]['key'], null, 'admin');
 			}
 		}
 	}
@@ -104,7 +104,7 @@
 	$db = database::connect($handled_env);
  	$q = 'SELECT `key`, item, itemid, subject, subjectid, created FROM logbook '.$WHERE.' ORDER BY created DESC LIMIT '.$limit;
 	$logs = $db->query($q);
-	
+
 //	Build lists of id based on subject, time interval and item
 	foreach ($logs['data'] as $log)
 	{
@@ -117,25 +117,25 @@
 		if (!isset($clusters[$hash]['item'])) $clusters[$hash]['item'] = $log['item'];
 		if (!isset($clusters[$hash]['subject'])) $clusters[$hash]['subject'] = $log['subject'];
 		if (!isset($clusters[$hash]['subjectid'])) $clusters[$hash]['subjectid'] = $log['subjectid'];
-		
+
 	//	Add the id to the list (once is enough)
 		if (!isset($clusters[$hash]['id']) OR !in_array($log['itemid'], $clusters[$hash]['id'])) $clusters[$hash]['id'][] = $log['itemid'];
 	}
-	
-	
+
+
 //	Add Bunched to the Clusters
 	foreach ($clusters as $hash => $cluster)
 	{
 	//	If this item still exists
-		if (isset($items['item_'.$cluster['item']])) 
+		if (isset($items['item_'.$cluster['item']]))
 		{
 		//	Add the bunch
 			$clusters[$hash]['bunch'] = i($cluster['item'], array('id' => $cluster['id']), $handled_env);
-		
+
 		//	Store the author
 			$nickname = $cluster['subject'].'_'.$cluster['subjectid'];
 			if (!isset($authors[$nickname])) $authors[$nickname] = i($nickname, null, 'site');
-		
+
 		//	Find the first media attr
 			if ($clusters[$hash]['bunch']->count > 0)
 			{

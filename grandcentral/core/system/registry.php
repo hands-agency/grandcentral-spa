@@ -76,7 +76,8 @@ class registry
 		// prepare environment
 		$this->_prepare_current();
 		//	constants
-		i('const', all, env);
+		i('const', all, 'site');
+		i('const', all, 'admin');
 
 		if (!SITE_DEBUG)
 		{

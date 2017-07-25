@@ -6,30 +6,30 @@
 	$bunch = $cluster['bunch'];
 	$date = $cluster['date'];
 	$author = $authors[$cluster['subject'].'_'.$cluster['subjectid']];
-	
+
 //	Format Current Separator
 	$currentSeparator = formatSeparator($date, $period);
 //	Change separators
 	if (!isset($lastSeparator)) echo '<h2><span class="rule">'.$currentSeparator.'</span></h2><ol>';
 	else if ($lastSeparator != $currentSeparator) echo '</ol><h2><span class="rule">'.$currentSeparator.'</span></h2><ol>';
-//	Save & format last Separator	
+//	Save & format last Separator
 	$lastSeparator = formatSeparator($date, $period);
-?>	
+?>
 <li>
 	<?php
 		$authorIcon = (isset($author['profilepic']) && !$author['profilepic']->is_empty()) ? $author['profilepic']->unfold()[0]->get_url(true) : null;
 	?>
 	<div class="icon"><a href="<?=$author->edit()?>" style="background-image:url(<?=$authorIcon?>);"></a></div>
-	
+
 	<div class="padding">
-		
+
 		<div class="title">
 			<a href="<?=$author->edit()?>" class="item"><?=$cluster['item']?></a>
 			<?php
 				$authorName = ($author == $_SESSION['user']) ? 'You' : $author['firstname'].' '.$author['lastname'];
 			?>
-			<a href="<?=$author->edit()?>" class="author"><?=$authorName?></a> <?=cst('eventstream_'.$cluster['key'])?>
-			
+			<a href="<?=$author->edit()?>" class="author"><?=$authorName?></a> <?=cst('eventstream_'.$cluster['key'], null, 'admin')?>
+
 			<?php $iTitle = 0; ?>
 			<?php foreach ($bunch as $item): ?>
 			<?php
@@ -45,12 +45,12 @@
 					if ($remain > 0) echo ' and '.$remain.' others.';
 					break;
 				}
-			?>			
+			?>
 			<?php endforeach ?>
 		</div>
-				
+
 		<?php if ($bunch->count > 0 && isset($iconField[$bunch[0]->get_table()])): ?>
-			
+
 			<?php $iThumbnail = 0; $li = null; ?>
 			<?php foreach ($bunch as $item): ?>
 			<?php
@@ -77,7 +77,7 @@
 			if ($li) echo '<ul class="thumbnails">'.$li.'</ul>';
 		?>
 		<?php endif ?>
-		
+
 	</div>
 </li>
 	<?php endif ?>

@@ -25,9 +25,9 @@
 		'order()' => 'created',
 	);
 //	Since
-	if (isset($_GET['since'])) 
+	if (isset($_GET['since']))
 	{
-		$p['created'] = '> '.$_GET['since'];	
+		$p['created'] = '> '.$_GET['since'];
 	}
 	$logbooks = i('logbook', $p, $_SESSION['pref']['handled_env']);
 
@@ -56,7 +56,7 @@
 		$icon = null;
 	//	$item = i($logbook['item'], $logbook['itemid']->get());
 	//	$label = $author['key'].' '.$logbook['key'].' '.$item['key'];
-		$label = '<a href=\''.$author->edit().'\' class=\'user\'>'.$author['title'].'</a> '.cst('TIMELINE_EVENT_'.$logbook['key'], $logbook['key']).' <a>Something</a>';
+		$label = '<a href=\''.$author->edit().'\' class=\'user\'>'.$author['title'].'</a> '.cst('TIMELINE_EVENT_'.$logbook['key'], $logbook['key'], 'admin').' <a>Something</a>';
 
 	//	Message
 		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "label": "'.$label.'", "icon": "'.$icon.'"}';

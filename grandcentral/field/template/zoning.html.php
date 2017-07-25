@@ -2,10 +2,10 @@
 <input type="hidden" name="<?=$formName?>[id]" value="<?=$page['id']?>" />
 
 <div class="zoningselected">
-	
+
 	<h1><span class="site"><?=i('site', current)['title']?></span> <span class="divider">•</span> <span class="page"><?=$page['title']?></span></h1>
-	
-	
+
+
 	<ul class="devices">
 		<li data-device="phone">
 			<div class="title">Phones</div>
@@ -24,15 +24,15 @@
 			<div class="size">≥ 1200px</div>
 		</li>
 	</ul>
-	
+
 	<div class="field" data-name="<?= $_FIELD->get_name(); ?>" data-env="<?= $handled_env; ?>">
 		<input type="hidden" name="<?= $fieldName; ?>" value="" />
 		<?php if (!empty($zones)): ?>
 		<?php foreach ($zones as $inout => $zones): ?>
-			
+
 		<div class="zones <?=$inout?>" data-device="phone">
-			
-			<?php if ($inout == 'in'): ?>		
+
+			<?php if ($inout == 'in'): ?>
 			<div class="browserbar">
 				<div class="buttons"><span>●</span><span>●</span><span>●</span></div>
 				<div class="addressbar"><?=$page['url']?></div>
@@ -45,7 +45,7 @@
 				<div class="title">
 					<span><?=$zone['key']?></span>
 				</div>
-				<ol data-nodata="<?=cst('ZONING_SELECTED_NODATA')?>"><?php if (isset($zone['section'])): foreach($zone['section'] as $section): ?><?php
+				<ol data-nodata="<?=cst('ZONING_SELECTED_NODATA', null, 'admin')?>"><?php if (isset($zone['section'])): foreach($zone['section'] as $section): ?><?php
 					//	App
 						$app = $section['app']['app'];
 					//	template
@@ -53,18 +53,18 @@
 					//	param
 						$param = (isset($section['app']['param']) & !empty($section['app']['param'])) ? htmlspecialchars(json_encode($section['app']['param']), ENT_COMPAT, 'UTF-8') : null;
 					?><li data-item="<?=$section->get_nickname()?>">
-						
+
 						<button class="delete" type="button"></button>
-						
+
 						<a class="title">
 							<span><?=$section['title']?></span>
 							<span class="app"><?=$app?></span>
 						</a>
-						
+
 						<div class="preview"><!--iframe src="<?=$iframe['url']->args(array('section' => $section->get_nickname(), 'page' => $page->get_nickname()))?>"></iframe--></div>
-		
+
 						<input type="hidden" name="<?=$fieldName?>[]" value="<?=$section->get_nickname()?>" />
-					
+
 					</li><?php endforeach ?><?php endif; ?></ol>
 			</div>
 			<?php endforeach ?>

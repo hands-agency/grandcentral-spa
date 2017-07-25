@@ -124,11 +124,13 @@
  * @return	string	the constant or the key if undefined
  * @access	public
  */
-	function cst($key, $data = null)
+	function cst($key, $data = null, $env = 'site')
 	{
 		// get the constants
 		$key = mb_strtoupper($key);
-		$const = registry::get(env, 'const', $key);
+		// echo "<pre>";print_r(env);echo "</pre>";
+		// echo "<pre>";print_r((string) registry::get('site', 'const', $key));echo "</pre>";exit;
+		$const = registry::get($env, 'const', $key);
 		$string = (is_a($const, '_attrs')) ? $const->__tostring() : $key;
 		// insert the data into the string
 		if (!is_null($data) && is_array($data))

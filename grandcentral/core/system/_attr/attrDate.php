@@ -99,10 +99,10 @@ class attrDate extends _attrs
 		$timeFirst  = strtotime($this->data);
 		$timeSecond = strtotime(date('Y-m-d H:i:s'));
 		$since = $timeSecond - $timeFirst;
-	
+
 	//	Just now (< 30 second ago)
-		if ($since < 30) $return = cst('Just now');
-		
+		if ($since < 30) $return = cst('Just now', null, 'admin');
+
 	//	Otherwise
 		else
 		{
@@ -128,7 +128,7 @@ class attrDate extends _attrs
 	//	Return
 	    return $return;
 	}
-	
+
 /**
  * Get the properties of an attributes
  *

@@ -1,7 +1,7 @@
 <?php if ($count != 0) : ?>
 <div class="infiniteScrollContainer"></div>
 <div class="infiniteScrollWantsMore" data-feathericon="&#xe129"></div>
-<div class="infiniteScrollStopper"><?=cst('stopper')?></div>
+<div class="infiniteScrollStopper"><?=cst('stopper', null, 'admin')?></div>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function()
@@ -22,7 +22,7 @@ $(document).ready(function()
 			target:'#adminContent section.active',
 		});
 	}
-	
+
 //	Launch infinitescroll each time
 	container.removeData('infinitescroll');
 	container.infinitescroll(
@@ -35,10 +35,10 @@ $(document).ready(function()
 	},
 	function()
 	{
-	
+
 	//	card
 		var $container = $('section[data-template="/list/list"][data-pref-display="incard"]>.infiniteScrollContainer>ol');
-	//	initialize card after all images have loaded  
+	//	initialize card after all images have loaded
 		$container.imagesLoaded( function()
 		{
 			$('ol li .front img').each(function()
@@ -49,7 +49,7 @@ $(document).ready(function()
 				$(this).closest('.card').find('.front, .back').attr('style', 'background-color:rgb('+color+');');
 			});
 		});
-	
+
 	//	Back flip
 		$('.card').hoverIntent(
 		{
@@ -60,7 +60,7 @@ $(document).ready(function()
 				$(this).removeClass('flipped preview');
 			}
 		});
-	//	
+	//
 	/*
 		$.adaptiveBackground.run(
 		{
