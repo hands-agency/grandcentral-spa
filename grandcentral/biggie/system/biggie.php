@@ -151,23 +151,37 @@ class biggie
 	}
 	public function get_reader_asset(itemPage $reader)
 	{
-		// echo "<pre>";print_r($reader['type']['master']['param']);echo "</pre>";
 		$assets = [];
 		$sections = new bunch(null, null, 'site');
 		$sections->get_by_nickname([$reader['type']['master']['param']['list'],$reader['type']['master']['param']['detail']]);
 
-		// echo "<pre>";print_r($sections);echo "</pre>";
-		for ($i=0; $i < $sections->count; $i++)
+		if ($sections->count > 1)
 		{
-			$assets[$i] = [
+			for ($i=0; $i < $sections->count; $i++)
+			{
+
+				$assets[$i] = [
+					'item' => $reader->get_nickname(),
+					'key' => $reader['key']->get(),
+					'type' => $i == 0 ? 'content' : 'reader_detail',
+					'title' => $reader['title']->get(),
+					'url' => $reader['url']->get(),
+					'template' => $this->get_template_asset($sections[$i]['app']),
+				];
+				$assets[$i]['template']['param'] = $reader['type']['master']['param'];
+			}
+		}
+		else
+		{
+			$assets[0] = [
 				'item' => $reader->get_nickname(),
 				'key' => $reader['key']->get(),
-				'type' => $i == 0 ? 'content' : 'reader_detail',
+				'type' => 'reader_detail',
 				'title' => $reader['title']->get(),
 				'url' => $reader['url']->get(),
-				'template' => $this->get_template_asset($sections[$i]['app']),
+				'template' => $this->get_template_asset($sections[0]['app']),
 			];
-			$assets[$i]['template']['param'] = $reader['type']['master']['param'];
+			$assets[0]['template']['param'] = $reader['type']['master']['param'];
 		}
 		return $assets;
 	}
