@@ -233,6 +233,7 @@ class biggie
 		// generate all templates for reader detail
 		if ($asset['type'] == 'reader_detail')
 		{
+			// echo "<pre>";print_r($asset);echo "</pre>";
 			// manage query params (for mirror site or async lang site)
 			$item = i($asset['template']['param']['item']);
 			$params = isset($item['version']) ? ['version' => $version->get_nickname()] : all;
@@ -242,6 +243,7 @@ class biggie
 			{
 				$asset['template']['param']['item'] = $item;
 				$asset['template']['file'] = $item['url'];
+				// echo "<pre>";print_r($asset);echo "</pre>";
 				$this->generate_template($version, $asset);
 			}
 		}
@@ -263,7 +265,7 @@ class biggie
 		$path = $asset['url'][$version['lang']->get()];
 		if (isset($asset['template']['file']))
 		{
-			$path .= $asset['template']['file']->get()[$version['lang']->get()];
+			$path .= !empty($asset['template']['file']) ? $asset['template']['file']->get()[$version['lang']->get()] : trigger_error('No url for: '.$asset['template']['item']->get_nickname());
 		}
 		$root = $this->root['generated'].'/'.$version['lang'].$path.'.html';
 		$file = new file($root);

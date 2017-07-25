@@ -20,6 +20,7 @@
       $b->generate_route();
       $b->generate_less();
       $b->generate_templates();
+      // exit;
       //	Display the current page
       echo i('page', current);
       break;
