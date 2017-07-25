@@ -129,13 +129,20 @@ class biggie
 			}
 		}
 		$jsFile = array_values($dir->refine('.js'));
+		foreach ($jsFile as $js)
+		{
+			if ($js->get_extension() == 'js')
+			{
+				break;
+			}
+		}
 		// echo "<pre>";print_r($lessFile);echo "</pre>";
 
 		$asset = [
 			'app' => $template['app'],
 			'root' => $template['template'],
 			'less' => $lessFile,
-			'js' => isset($jsFile[0]) ? $jsFile[0]->get_root() : '',
+			'js' => $js,
 			'param' => $params
 		];
 		return $asset;
