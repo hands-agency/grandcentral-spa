@@ -210,7 +210,7 @@ class itemPage extends _items
 			//	error
 				if (!method_exists($this, $prepareFunction))
 				{
-					trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
+					// trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
 				}
 			//	headers
 				$this->header();
