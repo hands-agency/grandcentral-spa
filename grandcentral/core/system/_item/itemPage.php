@@ -206,11 +206,12 @@ class itemPage extends _items
 					$this->get('login');
 				}
 			//	prepare page display
-				$prepareFunction = '_prepare_'.$this['type']['key'];
+				// $prepareFunction = '_prepare_'.$this['type']['key'];
+				$prepareFunction = '_prepare_content';
 			//	error
 				if (!method_exists($this, $prepareFunction))
 				{
-					// trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
+					trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
 				}
 			//	headers
 				$this->header();
