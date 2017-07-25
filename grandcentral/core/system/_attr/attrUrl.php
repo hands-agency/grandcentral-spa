@@ -237,8 +237,16 @@ class attrUrl extends attrArray
 		// version url
 		// if (is_null($this->params['version']))
 		// {
-		$version = registry::get(registry::current_index,'version');
-		$url = $version->get_url();
+		if ($this->params['env'] == 'admin')
+		{
+			$url = ADMIN_URL;
+		}
+		else
+		{
+			$version = registry::get(registry::current_index,'version');
+			$url = $version->get_url();
+		}
+
 		// echo "<pre>";print_r($url);echo "</pre>";exit;
 			// echo "<pre>sdfs";print_r($url);echo "</pre>";exit;
 		// }
@@ -250,10 +258,10 @@ class attrUrl extends attrArray
 		// reader
 		if ($this->params['table'] != 'page')
 		{
-			// echo "<pre>";print_r(registry::get(registry::reader_index));echo "</pre>";
 			foreach (registry::get(registry::reader_index) as $page => $table)
 			{
-				if (isset($table[0]['param']) && $this->params['table'] == $table[0]['param']['item'])
+				// echo "<pre>";print_r($table);echo "</pre>";
+				if (isset($table['param']) && $this->params['table'] == $table['param']['item'])
 				{
 					$tmp = registry::get(registry::url_index, $page);
 					// new url format
@@ -269,10 +277,11 @@ class attrUrl extends attrArray
 				}
 			}
 		}
-
+		$url = mb_substr($url,mb_strlen(DOMAIN_URL)).$this->get_current();
 		// $url = mb_substr($url, mb_strlen(DOMAIN_URL));
+		// echo "<pre>";print_r($url);echo "</pre>";exit;
 		// return
-		return mb_substr($url,mb_strlen(DOMAIN_URL)).$this->get_current();
+		return $url;
 
 	}
 /**

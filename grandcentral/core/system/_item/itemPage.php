@@ -447,42 +447,48 @@ class itemPage extends _items
 		{
 			$db = database::connect('site');
 			// on recherche toutes les urls des pages
-			$q = 'SELECT `id`, `url` FROM `page`';
+			$q = 'SELECT `id`, `url`, `type` FROM `page`';
 			$r = $db->query($q);
+			$readers = $urls = array();
 			foreach ($r['data'] as $page)
 			{
 				$urls['page_'.$page['id']] = $page['url'];
+				$type = json_decode($page['type'],true);
+				// echo "<pre>";print_r($type);echo "</pre>";
+				if ($type['master']['app'] == 'reader')
+				{
+					$readers['page_'.$page['id']] = $type['master'];
+				}
 			}
 			// on recherche les readers dans le table section
-			$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%" OR  `app` LIKE "%\"app\":\"api\"%" OR  `app` LIKE "%\"app\":\"doc\"%"';
-			$r = $db->query($q);
+			// $q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%" OR  `app` LIKE "%\"app\":\"api\"%" OR  `app` LIKE "%\"app\":\"doc\"%"';
+			// $r = $db->query($q);
 			// traitement de la requête pour stockage
-			$hash = null;
-			$readersid = array();
-			if ($r['count'] > 0)
-			{
-				foreach ($r['data'] as $reader)
-				{
-					$readersId[] = $reader['id'];
-					$readersTable[$reader['id']] = json_decode($reader['app'], true);
-				}
-				$hash = ' OR (`rel`="section" AND `relid` IN ('.implode(',',$readersId).'))';
-			}
+			// $hash = null;
+			// $readersid = array();
+			// if ($r['count'] > 0)
+			// {
+			// 	foreach ($r['data'] as $reader)
+			// 	{
+			// 		$readersId[] = $reader['id'];
+			// 		$readersTable[$reader['id']] = json_decode($reader['app'], true);
+			// 	}
+			// 	$hash = ' OR (`rel`="section" AND `relid` IN ('.implode(',',$readersId).'))';
+			// }
 			// on recherche les pages liées aux readers et les liaisans entre les pages
-			$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND (`key`="child"'.$hash.') ORDER BY `itemid`, `position`';
+			$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND (`key`="child") ORDER BY `itemid`, `position`';
 			$r = $db->query($q);
-			$readers = $tree = array();
+			$tree = array();
 			foreach ($r['data'] as $rel)
 			{
 				if ('child' == $rel['key'])
 				{
 					$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
 				}
-				else
-				{
-					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']];
-				}
 			}
+			// echo "<pre>t";print_r($urls);echo "</pre>";
+			// echo "<pre>t";print_r($tree);echo "</pre>";
+			// echo "<pre>r";print_r($readers);echo "</pre>";
 			// mise en registre
 			registry::set(registry::url_index, $urls);
 			registry::set(registry::legacy_index, $tree);
