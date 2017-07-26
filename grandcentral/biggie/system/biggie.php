@@ -169,6 +169,9 @@ class biggie
 					'template' => $this->get_template_asset($sections[$i]['app']),
 				];
 				$assets[$i]['template']['param'] = $reader['type']['master']['param'];
+				if (isset($sections[$i]['app']['param'])) {
+					$assets[$i]['template']['param']['section'] = $sections[$i]['app']['param'];
+				}
 			}
 		}
 		else
