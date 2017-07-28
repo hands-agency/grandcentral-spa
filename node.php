@@ -18,7 +18,7 @@
       //	Display the current page
       echo i('page', current);
       // biggie generation
-      if (!in_array(URLR,['/login','/logout']) && !mb_strstr(URLR,'api.json'))
+      if (!in_array(URLR,['/login','/logout']) && !mb_strstr(URLR,'api.json') && master::get_content_type() == 'html')
       {
         $b = new biggie();
         $b->generate_route();
