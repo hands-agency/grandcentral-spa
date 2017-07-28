@@ -15,14 +15,16 @@
       sentinel::getInstance();
       //	Loading the registry
       registry::getInstance();
-      // biggie generation
-      $b = new biggie();
-      $b->generate_route();
-      $b->generate_less();
-      $b->generate_templates();
-      // exit;
       //	Display the current page
       echo i('page', current);
+      // biggie generation
+      if (!in_array(URLR,['/login','/logout']) && !mb_strstr(URLR,'api.json'))
+      {
+        $b = new biggie();
+        $b->generate_route();
+        $b->generate_less();
+        $b->generate_templates();
+      }
       break;
     case 'SITE' == ENV:
       $url = __DIR__.'/'.boot::admin_dir.'/biggie/system/biggie.php';
