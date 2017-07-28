@@ -237,14 +237,18 @@ class attrUrl extends attrArray
 		// version url
 		// if (is_null($this->params['version']))
 		// {
+		// echo "<pre>";print_r(registry::get_constants());echo "</pre>";exit;
 		if ($this->params['env'] == 'admin')
 		{
 			$url = ADMIN_URL;
 		}
 		else
 		{
-			$version = registry::get(registry::current_index,'version');
-			$url = $version->get_url();
+			$site = registry::get(registry::current_index,'site');
+			$version = $site['version'];
+			// echo "<pre>";print_r($site['version']);echo "</pre>";
+			$url = $site['version']->get_url();
+			// echo "<pre>";print_r($url);echo "</pre>";
 		}
 
 		// echo "<pre>";print_r($url);echo "</pre>";exit;
