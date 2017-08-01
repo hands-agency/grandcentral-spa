@@ -244,10 +244,9 @@ class attrUrl extends attrArray
 		}
 		else
 		{
-			$site = registry::get(registry::current_index,'site');
-			$version = $site['version'];
+			$version  = registry::get(registry::current_index,'version');
 			// echo "<pre>";print_r($site['version']);echo "</pre>";
-			$url = $site['version']->get_url();
+			$url = $version->get_url();
 			// echo "<pre>";print_r($url);echo "</pre>";
 		}
 
