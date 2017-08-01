@@ -246,7 +246,8 @@ class attrUrl extends attrArray
 		{
 			$version  = registry::get(registry::current_index,'version');
 			// echo "<pre>";print_r($site['version']);echo "</pre>";
-			$url = $version->get_url();
+			// echo "<pre>";print_r($this->data[$version['lang']->get()]);echo "</pre>";exit;
+			$url = isset($this->data[$version['lang']->get()]) && in_array($this->data[$version['lang']->get()],['/login','/logout']) ? SITE_URL : $version->get_url();
 			// echo "<pre>";print_r($url);echo "</pre>";
 		}
 
