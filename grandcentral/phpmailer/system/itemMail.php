@@ -32,7 +32,6 @@ class itemMail extends _items
 				$msg = str_replace($result[0], $datas[$result[1]], $msg);
 			}
 		}
-		print'<pre>';print_r($msg);print'</pre>';
 		return $msg;
 	}
 }
