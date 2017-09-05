@@ -265,17 +265,20 @@ class biggie
 
 		$html = (string) app($asset['template']['app'], $asset['template']['root'], $asset['template']['param'],'site');
 		// echo "<pre>";print_r($asset);echo "</pre>";
-		$path = $asset['url'][$version['lang']->get()];
-		if (isset($asset['template']['file']))
+		if (isset($asset['url'][$version['lang']->get()]))
 		{
-			$path .= !empty($asset['template']['file']) ? $asset['template']['file']->get()[$version['lang']->get()] : trigger_error('No url for: '.$asset['template']['item']->get_nickname());
+			$path = $asset['url'][$version['lang']->get()];
+			if (isset($asset['template']['file']))
+			{
+				$path .= !empty($asset['template']['file']) ? $asset['template']['file']->get()[$version['lang']->get()] : trigger_error('No url for: '.$asset['template']['item']->get_nickname());
+			}
+			$root = $this->root['generated'].'/'.$version['lang'].$path.'.html';
+			$file = new file($root);
+			$file->set($html);
+			$dir = $file->get_dir();
+			if (!is_dir($dir)) mkdir($dir);
+			$file->save();
 		}
-		$root = $this->root['generated'].'/'.$version['lang'].$path.'.html';
-		$file = new file($root);
-		$file->set($html);
-		$dir = $file->get_dir();
-		if (!is_dir($dir)) mkdir($dir);
-		$file->save();
 
 	}
 }
