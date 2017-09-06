@@ -38,7 +38,7 @@ module.exports = {
 	if ($asset['key'] == 'home'):
 		$homeUrl = empty($homeUrl) ? $url : $homeUrl;
 ?>
-	[`${config.BASE}<?= $version['key'] ?>`]: '<?= $url ?>',
+	[`${config.BASE}<?= $version['key'] ?>`]: '/<?= $version['key'] ?><?= $url ?>',
 <?php endif; ?>
 	[`${config.BASE}<?= $version['key'].$url ?>`]: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>'),
 <?php endforeach; ?>
