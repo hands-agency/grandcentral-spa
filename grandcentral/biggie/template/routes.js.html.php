@@ -21,7 +21,7 @@ see https://github.com/bigwheel-framework/documentation/blob/master/routes-defin
 ---------- */
 
 var allowedLanguages = ['<?= implode('\',\'', $langs) ?>']
-var favoriteLanguages = navigator.languages
+var favoriteLanguages = navigator.languages || []
 var defaultLang = false
 for (var i = 0; i < favoriteLanguages.length; i++) {
 	if (!defaultLang && allowedLanguages.indexOf(favoriteLanguages[i]) != -1) defaultLang = favoriteLanguages[i]
