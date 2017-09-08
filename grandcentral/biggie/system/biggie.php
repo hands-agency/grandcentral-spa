@@ -59,16 +59,18 @@ class biggie
 			$master = [
 				'key' => 'master',
 				'type' => 'master',
-				'url' => [
-					'fr' => '/master',
-					'en' => '/master'
-				],
+				'url' => [],
 				'template' => [
 					'app' => 'content',
 					'template' => '/master/master',
 					'param' => []
 				]
 			];
+
+			foreach (i('version',all) as $version)
+			{
+				$master['url'][$version['lang']->get()] = '/master';
+			}
 			// echo "<pre>";print_r($master);echo "</pre>";
 			$master['template'] = $this->get_template_asset($master['template']);
 			array_unshift($assets, $master);
