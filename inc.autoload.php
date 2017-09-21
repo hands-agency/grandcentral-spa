@@ -116,9 +116,11 @@ class boot
 		$this->relative_root = (isset($directory)) ? $directory : null;
 		$this->domain .= (isset($directory)) ? $directory : null;
 		$this->root = (isset($root)) ? $root : $_SERVER['DOCUMENT_ROOT'].$this->relative_root;
+    $lang = null;
 	//	recherche du site actif
-		foreach ($site as $param)
+		foreach ($site as $key => $param)
 		{
+
 			foreach ((array) $param['url'] as $version => $url)
 			{
 			//	recherche exacte
@@ -126,9 +128,11 @@ class boot
 				{
 					$param['url'] = $url;
 					$this->site = $param;
+          $lang = $version;
 					break 2;
 				}
 			}
+
 			foreach ((array) $param['url'] as $version => $url)
 			{
 			//	recherche exacte
@@ -140,8 +144,20 @@ class boot
 				}
 			}
 		}
-	//	version
-		$this->site['version'] = ($version !== 0) ? $version : null;
+	   //	version
+    $versions = array_keys($site[$key]['url']);
+    if (empty($lang)) $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    if (in_array($lang, $versions))
+    {
+      $this->site['version'] = $lang;
+    }
+		else
+    {
+		  $this->site['version'] = ($version !== 0) ? $version : null;
+		}
+
+    // echo "<pre>";print_r($this->site['version']);echo "</pre>";
+    // exit;
 
 		$this->admin = $admin;
 		$this->admin['root'] = $this->root.'/'.self::admin_dir;
