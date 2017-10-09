@@ -44,6 +44,6 @@ module.exports = {
 <?php endforeach; ?>
 <?php endforeach; ?>
 	// other routes
-	[`${config.BASE}`]: `/${defaultLang}<?= $homeUrl ?>`,
+	[`${config.BASE}`]: `/${defaultLang}`,
 	'404': `/${defaultLang}`
 }
