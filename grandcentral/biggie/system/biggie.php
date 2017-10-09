@@ -174,6 +174,14 @@ class biggie
 				if (isset($sections[$i]['app']['param'])) {
 					$assets[$i]['template']['param']['section'] = $sections[$i]['app']['param'];
 				}
+
+				// Sub mode
+				if ($assets[$i]['type'] == 'reader_detail' && isset($reader['type']['master']['param']['detailsub']) && (bool) $reader['type']['master']['param']['detailsub'] === true)
+				{
+					$assets[$i]['sub'] = array(
+						'url' => empty($reader['type']['master']['param']['detailurl']) ? '/detail' : $reader['type']['master']['param']['detailurl']
+					);
+				}
 			}
 		}
 		else
@@ -188,6 +196,7 @@ class biggie
 			];
 			$assets[0]['template']['param'] = $reader['type']['master']['param'];
 		}
+
 		return $assets;
 	}
 

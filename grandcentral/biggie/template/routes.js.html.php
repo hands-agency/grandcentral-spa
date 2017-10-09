@@ -39,9 +39,20 @@ module.exports = {
 		$homeUrl = empty($homeUrl) ? $url : $homeUrl;
 ?>
 	[`${config.BASE}<?= $version['key'] ?>`]: '/<?= $version['key'] ?><?= $url ?>',
-<?php endif; ?>
+<?php endif;
+	if (isset($asset['sub'])):
+?>
+	[`${config.BASE}<?= $version['key'].$url ?>`]: {
+		section: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>'),
+		duplicate: true,
+		routes: {
+			'/detail': { section: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>sub'), duplicate: true }
+		}
+	},
+<?php else: ?>
 	[`${config.BASE}<?= $version['key'].$url ?>`]: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>'),
-<?php endforeach; ?>
+<?php endif;
+	endforeach; ?>
 <?php endforeach; ?>
 	// other routes
 	[`${config.BASE}`]: `/${defaultLang}`,
