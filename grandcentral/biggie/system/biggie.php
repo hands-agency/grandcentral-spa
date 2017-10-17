@@ -134,7 +134,7 @@ class biggie
 		$js = '';
 		foreach ($jsFile as $file)
 		{
-			if ($file->get_extension() == 'js')
+			if ($file->get_extension() == 'js' && !mb_strstr($file->get_key(),'.sub.'))
 			{
 				$js = $file->get_root();
 				break;
@@ -157,21 +157,38 @@ class biggie
 		$sections = new bunch(null, null, 'site');
 		$sections->get_by_nickname([$reader['type']['master']['param']['list'],$reader['type']['master']['param']['detail']]);
 
+		// echo "<pre>";print_r($sections);echo "</pre>";
 		if ($sections->count > 1)
 		{
+
 			for ($i=0; $i < $sections->count; $i++)
 			{
-
-				$assets[$i] = [
-					'item' => $reader->get_nickname(),
-					'key' => $reader['key']->get(),
-					'type' => $i == 0 ? 'content' : 'reader_detail',
-					'title' => $reader['title']->get(),
-					'url' => $reader['url']->get(),
-					'template' => $this->get_template_asset($sections[$i]['app']),
-				];
-				$assets[$i]['template']['param'] = $reader['type']['master']['param'];
-				if (isset($sections[$i]['app']['param'])) {
+				// echo "<pre>";print_r($sections[$i]['app']);echo "</pre>";
+				if (is_a($sections[$i],'itemSection'))
+				{
+					$assets[$i] = [
+						'item' => $reader->get_nickname(),
+						'key' => $reader['key']->get(),
+						'type' => $i == 0 ? 'content' : 'reader_detail',
+						'title' => $reader['title']->get(),
+						'url' => $reader['url']->get(),
+						'template' => is_a($sections[$i],'itemSection') ? $this->get_template_asset($sections[$i]['app']) : '',
+					];
+					$assets[$i]['template']['param'] = $reader['type']['master']['param'];
+				}
+				else
+				{
+					// echo "<pre>";print_r($sections[$i]);echo "</pre>";
+					$assets[$i] = [
+						'item' => $reader->get_nickname(),
+						'key' => $reader['key']->get(),
+						'type' => 'redirect',
+						'url' => $reader['url']->get('site'),
+						'redirect' => $sections[$i]['url']
+					];
+				}
+				if (isset($sections[$i]['app']['param']))
+				{
 					$assets[$i]['template']['param']['section'] = $sections[$i]['app']['param'];
 				}
 
@@ -212,6 +229,7 @@ class biggie
 	{
 		$file = new file($this->root['routes']);
 		$content = (string) app('biggie', '/routes.js', $this->get_assets(), 'admin');
+		// echo "<pre>";print_r($content);echo "</pre>";exit;
 		$file->set($content);
 		$file->save();
 	}
@@ -244,6 +262,7 @@ class biggie
 
 	public function generate_asset($version, $asset)
 	{
+		if ($asset['type'] == 'redirect') return '';
 		// generate all templates for reader detail
 		if ($asset['type'] == 'reader_detail')
 		{

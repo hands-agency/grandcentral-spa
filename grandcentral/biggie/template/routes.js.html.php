@@ -29,7 +29,9 @@ for (var i = 0; i < favoriteLanguages.length; i++) {
 if (!defaultLang) defaultLang = allowedLanguages[0]
 
 module.exports = {
-<?php foreach ($versions as $version): ?>
+<?php foreach ($versions as $version):
+	registry::set(registry::current_index,'version',$version);
+	?>
 	// <?= $version['title'] ?>
 
 <?php foreach ($assets as $asset):
@@ -46,9 +48,11 @@ module.exports = {
 		section: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>'),
 		duplicate: true,
 		routes: {
-			'/detail': { section: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>sub'), duplicate: true }
+			'/detail': { section: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>.sub'), duplicate: true }
 		}
 	},
+<?php elseif(isset($asset['redirect'])): ?>
+	[`${config.BASE}<?= $version['key'].$url ?>`]: '<?= $asset['redirect'] ?>',
 <?php else: ?>
 	[`${config.BASE}<?= $version['key'].$url ?>`]: require('<?= mb_substr($asset['template']['js'], 0, -3) ?>'),
 <?php endif;
