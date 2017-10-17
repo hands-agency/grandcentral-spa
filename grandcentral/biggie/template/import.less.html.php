@@ -6,7 +6,7 @@
 @content_root: "<?= $root ?>";
 <?php foreach ($_PARAM as $asset): ?>
 /* ----- <?= $asset['key'] ?> ----- */
-<?php foreach ($asset['template']['less'] as $less): ?>
+<?php if (isset($asset['template']['less'])):
+foreach ($asset['template']['less'] as $less): ?>
 @import "@{content_root}<?= mb_substr($less, mb_strlen($root)) ?>";
-<?php endforeach; ?>
-<?php endforeach; ?>
+<?php endforeach;endif;endforeach; ?>
