@@ -10,7 +10,7 @@
   // display
   switch (true)
   {
-    case 'ADMIN' == ENV || in_array(URLR,['/login','/logout', '/vimeo-api-auth'])  || mb_strstr(URLR,'api.json'):
+    case 'ADMIN' == ENV || in_array(URLR,['/login','/logout', '/vimeo-api-auth', '/facebook-api-oauth', '/instagram-api-oauth', '/twitter-api-oauth'])  || mb_strstr(URLR,'api.json'):
       //	Loading the sentinel
       sentinel::getInstance();
       //	Loading the registry
