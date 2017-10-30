@@ -112,7 +112,7 @@ class attrSirtrevor extends _attrs
 		{
 			foreach ($json['data'] as $block)
 			{
-				$return .= app('sirtrevor', 'block/'.$block['type'], array('attr' => $this,'block' => $block))->__toString();
+				$return .= app('sirtrevor', 'block/'.$block['type'], array('attr' => $this,'block' => $block), 'site')->__toString();
 			}
 		}
 		return $return;
