@@ -263,10 +263,10 @@ abstract class _items implements ArrayAccess, Iterator
 		// biggie
 		$b = new biggie();
 		$b->get_assets();
-		$b->generate_meta();
 		$b->generate_route();
 		$b->generate_less();
 		$b->generate_templates();
+		$b->generate_meta();
 	}
 /**
  * Build queries to update an item

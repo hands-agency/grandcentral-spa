@@ -18,6 +18,7 @@ abstract class _apps
 	protected $template_url;
 	protected $template;
 	protected $ini;
+	protected $context;
 	protected $param = array();
 	protected static $loaded_file = array();
 /**
@@ -28,9 +29,11 @@ abstract class _apps
  * @param	string  environnement
  * @access	public
  */
-	public function __construct($template = 'default', $params = null, $env = env)
+	public function __construct($template = 'default', $params = null, $env = env, $context = '')
 	{
 		$this->key = mb_substr(mb_strtolower(get_called_class()), 3);
+
+		$this->context = $context;
 
 		// $this->key = (!empty($key)) ? $key : trigger_error('Your <strong>$key param</strong> is empty, app() will not work', E_USER_WARNING);
 		$this->template = (mb_strpos($template, '/') === 0) ? $template : '/'.$template;
@@ -214,8 +217,8 @@ abstract class _apps
 			$_PARAM = &$this->param;
 			//	on prépare la vue
 			$type = master::get_content_type();
-			// echo "<pre>sdfs";print_r($type);echo "</pre>";exit;
-			$content_type = empty($type) ? 'html' : master::get_content_type();
+			$content_type = empty($this->context) ? master::get_content_type() : $this->context;
+			if (empty($content_type)) $content_type = 'html';
 			$root = $this->get_templateroot();
 			$_ROUTINE = $root.$this->template.'.php';
 			$_TEMPLATE = $root.$this->template.'.'.$content_type.'.php';

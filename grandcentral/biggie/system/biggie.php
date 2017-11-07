@@ -364,7 +364,7 @@ class biggie
 		registry::get(registry::current_index,'site')['version']['lang'] = $version['lang'];
 		registry::set(registry::current_index,'version',$version);
 
-		$html = (string) app($asset['template']['app'], $asset['template']['root'], $asset['template']['param'],'site');
+		$html = (string) app($asset['template']['app'], $asset['template']['root'], $asset['template']['param'],'site','html');
 		// echo "<pre>";print_r($asset);echo "</pre>";
 		if (isset($asset['url'][$version['lang']->get()]))
 		{

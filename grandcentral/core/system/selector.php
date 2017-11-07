@@ -188,16 +188,16 @@
  * @param	string	app 2...
  * @access	public
  */
-	function app($key, $template = 'default', $params = null, $env = env)
+	function app($key, $template = 'default', $params = null, $env = env, $context = '')
 	{
 		$appClass = 'app'.ucfirst($key);
 		if (registry::get(registry::class_index, $appClass) === false)
 		{
-			$app = new app($key, $template, $params, $env);
+			$app = new app($key, $template, $params, $env, $context);
 		}
 		else
 		{
-			$app = new $appClass($template, $params, $env);
+			$app = new $appClass($template, $params, $env, $context);
 		}
 		return $app;
 	}
