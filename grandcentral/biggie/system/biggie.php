@@ -14,12 +14,14 @@ class biggie
 	const dir_generated = '/generated';
 	const dir_routes = '/assets/js/routes.js';
 	const dir_less = '/assets/less/import.less';
+	const dir_meta = '/assets/meta.json';
 	const app_name = 'biggie';
 	// const dir_site_app = '/biggie';
 	protected $app;
 	protected $root = [];
 	protected $url = [];
 	protected $assets = [];
+	protected $meta = [];
 
 	public function __construct()
 	{
@@ -29,7 +31,8 @@ class biggie
 			'admin' => $this->app->get_templateroot('site'),
 			'generated' => $this->app->get_templateroot('site').self::dir_generated,
 			'less' => $this->app->get_templateroot('site').self::dir_less,
-			'routes' => $this->app->get_templateroot('site').self::dir_routes
+			'routes' => $this->app->get_templateroot('site').self::dir_routes,
+			'meta' => $this->app->get_templateroot('site').self::dir_meta,
 		];
 		// if (!is_dir($this->root['generated']))
 		// {
@@ -55,6 +58,7 @@ class biggie
 		if (empty($this->assets))
 		{
 			$assets = [];
+			$metas = [];
 			// master
 			$master = [
 				'key' => 'master',
@@ -66,8 +70,8 @@ class biggie
 					'param' => []
 				]
 			];
-
-			foreach (i('version',all) as $version)
+			$this->versions = i('version',all);
+			foreach ($this->versions as $version)
 			{
 				$master['url'][$version['lang']->get()] = '/master';
 			}
@@ -81,20 +85,22 @@ class biggie
 			]);
 			foreach ($pages as $page)
 			{
+				// remplissage du tableau des assets
 				if ($page->is_reader())
 				{
 					$assets = array_merge($assets, $this->get_reader_asset($page));
+					$metas = array_merge($metas, $this->get_reader_meta($page));
 				}
 				elseif (isset($page['type']['master']) && !empty($page['type']['master']['template']))
 				{
 					$assets[] = $this->get_page_asset($page);
+					$metas = array_merge($metas, $this->get_item_meta($page));
 				}
+
 			}
-
-			// echo "<pre>";print_r($assets);echo "</pre>";
-
 			// fill $this->assets
 			$this->assets = $assets;
+			$this->metas = $metas;
 		}
 
 		return $this->assets;
@@ -112,6 +118,63 @@ class biggie
 		];
 		// echo "<pre>";print_r($page['type']['master']);echo "</pre>";
 		return $asset;
+	}
+	public function get_item_image(_items $item)
+	{
+		$image = null;
+		if (!isset($this->defaultImage))
+		{
+			$defaultImage = i('site',1)['default'];
+			if (!$defaultImage->is_empty())
+			{
+				$this->defaultImage = $defaultImage;
+			}
+		}
+		foreach ($item as $attr)
+		{
+			if (is_a('attrMedia',$attr))
+			{
+				$image = $attr->get();
+				break;
+			}
+		}
+		$image = is_null($image) ? $this->defaultImage : $image;
+		return $image->unfold()[0]->get_url();
+	}
+	public function get_item_meta(_items $item)
+	{
+		foreach ($this->versions as $version)
+		{
+			$title = isset($item['metatitle']) && !$item['metatitle']->is_empty() ? $item['metatitle']->get()[$version['key']->get()] : $item['title']->get()[$version['key']->get()];
+			$descr = '';
+			if (isset($item['metadescr']) && !$item['metadescr']->is_empty())
+			{
+				$descr = $item['metadescr']->get()[$version['key']->get()];
+			}
+			elseif (isset($item['descr']) && !$item['descr']->is_empty())
+			{
+				$descr = $item['descr']->get()[$version['key']->get()];
+			}
+
+			$meta[$item['url']->get_version($version)] = [
+				'title' => trim($title),
+				'descr' => trim($descr),
+				'image' => $this->get_item_image($item)
+			];
+		}
+		// echo "<pre>";print_r($page['type']['master']);echo "</pre>";
+		return $meta;
+	}
+	public function get_reader_meta(_items $item)
+	{
+		$table = $item['type']['master']['param']['item'];
+		$meta = $this->get_item_meta($item);
+
+		foreach (i($table, all) as $i)
+		{
+			$meta = array_merge($meta, $this->get_item_meta($i));
+		}
+		return $meta;
 	}
 	public function get_template_asset($template)
 	{
@@ -221,6 +284,14 @@ class biggie
 	{
 		$file = new file($this->root['less']);
 		$content = (string) app('biggie', '/import.less', $this->get_assets(), 'admin');
+		$file->set($content);
+		$file->save();
+	}
+
+	public function generate_meta()
+	{
+		$file = new file($this->root['meta']);
+		$content = json_encode($this->metas ,JSON_UNESCAPED_UNICODE);
 		$file->set($content);
 		$file->save();
 	}
