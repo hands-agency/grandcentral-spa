@@ -198,9 +198,13 @@ class attrUrl extends attrArray
  * @return	string	url
  * @access	public
  */
-	public function get_version($version_key)
+	public function get_version($version)
 	{
-		return '';
+		$current = registry::get(registry::current_index,'version');
+		registry::set(registry::current_index,'version',$version);
+		$url = $this->__tostring();
+		registry::set(registry::current_index,'version',$current);
+		return $url;
 	}
 /**
  * Return the current version of url hash
@@ -212,7 +216,7 @@ class attrUrl extends attrArray
 	public function get_current()
 	{
 		$r = $this->get();
-		$v = i($this->params['env'], current)['version']['lang']->get();
+		$v = registry::get(registry::current_index,'version')['lang']->get();
 		// new version
 		if (isset($r[$v]) && !empty($r[$v]))
 		{
@@ -234,10 +238,6 @@ class attrUrl extends attrArray
 	public function __tostring()
 	{
 		$url = '';
-		// version url
-		// if (is_null($this->params['version']))
-		// {
-		// echo "<pre>";print_r(registry::get_constants());echo "</pre>";exit;
 		if ($this->params['env'] == 'admin')
 		{
 			$url = ADMIN_URL;
@@ -245,20 +245,8 @@ class attrUrl extends attrArray
 		else
 		{
 			$version  = registry::get(registry::current_index,'version');
-			// echo "<pre>";print_r($site['version']);echo "</pre>";
-			// echo "<pre>";print_r($this->data[$version['lang']->get()]);echo "</pre>";exit;
 			$url = isset($this->data[$version['lang']->get()]) && in_array($this->data[$version['lang']->get()],['/login','/logout']) ? SITE_URL : str_replace('/admin', '',$version->get_url());
-			// echo "<pre>";print_r($url);echo "</pre>";
 		}
-
-		// echo "<pre>";print_r($url);echo "</pre>";exit;
-			// echo "<pre>sdfs";print_r($url);echo "</pre>";exit;
-		// }
-		// else
-		// {
-		// 	$version = constant(mb_strtoupper($this->params['env']).'_VERSION');
-		// 	$url = constant('VERSION_'.mb_strtoupper($version));
-		// }
 		// reader
 		if ($this->params['table'] != 'page')
 		{
@@ -282,8 +270,6 @@ class attrUrl extends attrArray
 			}
 		}
 		$url = mb_substr($url,mb_strlen(DOMAIN_URL)).$this->get_current();
-		// $url = mb_substr($url, mb_strlen(DOMAIN_URL));
-		// echo "<pre>";print_r($url);echo "</pre>";exit;
 		// return
 		return $url;
 
