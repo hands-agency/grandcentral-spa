@@ -34,13 +34,6 @@ class biggie
 			'routes' => $this->app->get_templateroot('site').self::dir_routes,
 			'meta' => $this->app->get_templateroot('site').self::dir_meta,
 		];
-		// if (!is_dir($this->root['generated']))
-		// {
-		// 	$dir = new dir($this->root['generated']);
-		// 	$dir->save();
-		// }
-		// if (!is_file($this->root['less'])) trigger_error('no less file at '.$this->root['less'].'', E_USER_ERROR);
-		// if (!is_file($this->root['routes'])) trigger_error('no routes file at '.$this->root['routes'].'', E_USER_ERROR);
 	}
 
 	public function load_master()
@@ -50,6 +43,7 @@ class biggie
 		$config_biggie_template = self::app_name.self::dir_generated;
 		$config_current_uri = SITE_URLR;//'/home';
 		$master = boot::site_dir.'/'. $config_site .'/'. $config_biggie_template .'/'. $config_version .'/master.html';
+		$_META = ['toto'];//$this->load_meta();
 		require($master);
 	}
 
@@ -57,8 +51,15 @@ class biggie
 	{
 		if (empty($this->assets))
 		{
+			$site = i('site',1,'site');
 			$assets = [];
-			$metas = [];
+			$metas = [
+				'site' => [
+					'title' => $site['title'],
+					'url' => DOMAIN,
+					'image' => $site['default']->is_empty() ? '' : $site['default']->unfold()[0],
+				]
+			];
 			// master
 			$master = [
 				'key' => 'master',
