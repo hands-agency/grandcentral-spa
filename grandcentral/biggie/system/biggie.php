@@ -56,7 +56,7 @@ class biggie
 			$metas = [
 				'site' => [
 					'title' => $site['title'],
-					'url' => DOMAIN,
+					'url' => '',
 					'image' => $site['default']->is_empty() ? '' : $site['default']->unfold()[0],
 				]
 			];
