@@ -53,11 +53,12 @@ class biggie
 		{
 			$site = i('site',1,'site');
 			$assets = [];
+
 			$metas = [
 				'site' => [
-					'title' => $site['title'],
-					'url' => '',
-					'image' => $site['default']->is_empty() ? '' : $site['default']->unfold()[0],
+					'title' => $site['title']->get(),
+					'url' => SITE_URL,
+					'image' => $site['default']->is_empty() ? '' : $site['default']->unfold()[0]->get_url(),
 				]
 			];
 			// master
