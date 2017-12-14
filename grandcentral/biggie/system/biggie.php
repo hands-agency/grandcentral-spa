@@ -58,7 +58,7 @@ class biggie
 				'site' => [
 					'title' => $site['title']->get(),
 					'url' => SITE_URL,
-					'image' => $site['default']->is_empty() ? '' : $site['default']->unfold()[0]->get_url(),
+					'image' => isset($site['default']) && $site['default']->is_empty() ? '' : $site['default']->unfold()[0]->get_url(),
 				]
 			];
 			// master
