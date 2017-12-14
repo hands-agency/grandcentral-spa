@@ -58,7 +58,7 @@ class biggie
 				'site' => [
 					'title' => $site['title']->get(),
 					'url' => SITE_URL,
-					'image' => isset($site['default']) && $site['default']->is_empty() ? '' : $site['default']->unfold()[0]->get_url(),
+					'image' => isset($site['default']) && !$site['default']->is_empty() && method_exists($site['default'], 'unfold') ? $site['default']->unfold()[0]->get_url() : '',
 				]
 			];
 			// master
@@ -127,10 +127,11 @@ class biggie
 		if (!isset($this->defaultImage))
 		{
 			$defaultImage = i('site',1)['default'];
-			if (!$defaultImage->is_empty())
+			if (is_a($defaultImage, '_attrs') && !$defaultImage->is_empty())
 			{
 				$this->defaultImage = $defaultImage;
 			}
+			else return '';
 		}
 		foreach ($item as $attr)
 		{
@@ -145,6 +146,8 @@ class biggie
 	}
 	public function get_item_meta(_items $item)
 	{
+		if (!isset($item['metatitle'])) return [];
+
 		foreach ($this->versions as $version)
 		{
 			$title = isset($item['metatitle']) && !$item['metatitle']->is_empty() ? $item['metatitle']->get()[$version['key']->get()] : $item['title']->get()[$version['key']->get()];
