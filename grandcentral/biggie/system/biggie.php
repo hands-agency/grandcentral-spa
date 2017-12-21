@@ -14,6 +14,7 @@ class biggie
 	const dir_generated = '/generated';
 	const dir_routes = '/assets/js/routes.js';
 	const dir_less = '/assets/less/import.less';
+	const dir_asset = '/assets/asset.json';
 	const dir_meta = '/assets/meta.json';
 	const app_name = 'biggie';
 	// const dir_site_app = '/biggie';
@@ -33,6 +34,7 @@ class biggie
 			'less' => $this->app->get_templateroot('site').self::dir_less,
 			'routes' => $this->app->get_templateroot('site').self::dir_routes,
 			'meta' => $this->app->get_templateroot('site').self::dir_meta,
+			'asset' => $this->app->get_templateroot('site').self::dir_asset,
 		];
 	}
 
@@ -43,8 +45,30 @@ class biggie
 		$config_biggie_template = self::app_name.self::dir_generated;
 		$config_current_uri = SITE_URLR;//'/home';
 		$master = boot::site_dir.'/'. $config_site .'/'. $config_biggie_template .'/'. $config_version .'/master.html';
-		$_META = ['toto'];//$this->load_meta();
 		require($master);
+	}
+
+	public function load_masterbot()
+	{
+		$config_site = SITE_KEY;//'boilerplate';
+		$config_version = SITE_VERSION;//'fr';
+		$config_biggie_template = self::app_name.self::dir_generated;
+		$config_current_uri = SITE_URLR;//'/home';
+		$master = boot::site_dir.'/'. $config_site .'/'. $config_biggie_template .'/'. $config_version .'/master.html';
+		$metas = $this->import_meta();
+
+		$meta = isset($metas[$_SERVER['REQUEST_URI']]) ? $metas[$_SERVER['REQUEST_URI']] : $metas['site'];
+		// echo "<pre>";print_r($metas);echo "</pre>";
+
+		$masterData = file_get_contents($master);
+		$template = file_get_contents($this->root['generated'].$meta['generated']);
+		$masterData = preg_replace('#<title>(.*?)</title>#is', '<title>'.$meta['title'].'</title>', $masterData);
+		$masterData = preg_replace('#<meta name="description" content="">#is', '<meta name="description" content="'.$meta['descr'].'">', $masterData);
+		$masterData = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $masterData);
+		$masterData = preg_replace('#<main(.*?)>(.*?)</main>#is', $template, $masterData);
+		$masterData = preg_replace('#</head>#is', '<style>body,html {overflow: auto !important;} main { position: static }</style></head>', $masterData);
+		echo $masterData;
+
 	}
 
 	public function get_assets()
@@ -146,7 +170,7 @@ class biggie
 	}
 	public function get_item_meta(_items $item)
 	{
-		if (!isset($item['metatitle'])) return [];
+		// if (!isset($item['metatitle'])) return [];
 
 		foreach ($this->versions as $version)
 		{
@@ -164,7 +188,8 @@ class biggie
 			$meta[$item['url']->get_version($version)] = [
 				'title' => trim($title),
 				'descr' => trim($descr),
-				'image' => $this->get_item_image($item)
+				'image' => $this->get_item_image($item),
+				'generated' => $item['url']->get_version($version).'.html'
 			];
 		}
 		// echo "<pre>";print_r($page['type']['master']);echo "</pre>";
@@ -179,6 +204,7 @@ class biggie
 		{
 			$meta = array_merge($meta, $this->get_item_meta($i));
 		}
+
 		return $meta;
 	}
 	public function get_template_asset($template)
@@ -293,12 +319,34 @@ class biggie
 		$file->save();
 	}
 
-	public function generate_meta()
+	public function export_meta()
 	{
 		$file = new file($this->root['meta']);
 		$content = json_encode($this->metas ,JSON_UNESCAPED_UNICODE);
 		$file->set($content);
 		$file->save();
+	}
+
+	public function export_asset()
+	{
+		$file = new file($this->root['asset']);
+		$content = json_encode($this->assets ,JSON_UNESCAPED_UNICODE);
+		$file->set($content);
+		$file->save();
+	}
+
+	public function import_meta()
+	{
+		if (!is_file($this->root['meta'])) trigger_error('Meta file missing', E_USER_ERROR);
+		$data = json_decode(file_get_contents($this->root['meta']), true);
+		return $data;
+	}
+
+	public function import_asset()
+	{
+		if (!is_file($this->root['asset'])) trigger_error('Assets file missing', E_USER_ERROR);
+		$data = json_decode(file_get_contents($this->root['asset']), true);
+		return $data;
 	}
 
 	public function generate_route()

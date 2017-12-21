@@ -266,7 +266,8 @@ abstract class _items implements ArrayAccess, Iterator
 		$b->generate_route();
 		$b->generate_less();
 		$b->generate_templates();
-		$b->generate_meta();
+		$b->export_asset();
+		$b->export_meta();
 	}
 /**
  * Build queries to update an item

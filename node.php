@@ -18,6 +18,12 @@
       //	Display the current page
       echo i('page', current);
       break;
+    case isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']):
+      $url = __DIR__.'/'.boot::admin_dir.'/biggie/system/biggie.php';
+      require($url);
+      $b = new biggie();
+      $b->load_masterbot();
+      break;
     case 'SITE' == ENV:
       $url = __DIR__.'/'.boot::admin_dir.'/biggie/system/biggie.php';
       require($url);
