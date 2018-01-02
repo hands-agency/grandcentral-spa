@@ -181,10 +181,14 @@ class biggie
 	public function get_item_meta(_items $item)
 	{
 		// if (!isset($item['metatitle'])) return [];
-
+		// echo "<pre>";print_r($item['title']->get());echo "</pre>";
 		foreach ($this->versions as $version)
 		{
-			$title = isset($item['metatitle']) && !$item['metatitle']->is_empty() ? $item['metatitle']->get()[$version['key']->get()] : $item['title']->get()[$version['key']->get()];
+			$title = isset($item['metatitle']) && !$item['metatitle']->is_empty() ?
+				$item['metatitle']->get()[$version['key']->get()] :
+				is_a($item['title'], 'attrI18n') ?
+					$item['title']->get()[$version['key']->get()] :
+					$item['title']->get();
 			$descr = '';
 			if (isset($item['metadescr']) && !$item['metadescr']->is_empty())
 			{
