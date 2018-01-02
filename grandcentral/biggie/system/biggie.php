@@ -57,8 +57,18 @@ class biggie
 		$master = boot::site_dir.'/'. $config_site .'/'. $config_biggie_template .'/'. $config_version .'/master.html';
 		$metas = $this->import_meta();
 
-		$meta = isset($metas[$_SERVER['REQUEST_URI']]) ? $metas[$_SERVER['REQUEST_URI']] : $metas['site'];
-		// echo "<pre>";print_r($metas);echo "</pre>";
+		if (isset($metas[$_SERVER['REQUEST_URI']]))
+		{
+			$meta = $metas[$_SERVER['REQUEST_URI']];
+		}
+		else
+		{
+			$keys = array_keys($metas);
+			$meta = $metas[$keys[1]];
+			header('Status: 301 Moved Permanently', false, 301);
+			header('Location: '.$keys[1]);
+			exit();
+		}
 
 		$masterData = file_get_contents($master);
 		$template = file_get_contents($this->root['generated'].$meta['generated']);
