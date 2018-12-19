@@ -30,6 +30,7 @@ if (!defaultLang) defaultLang = allowedLanguages[0]
 
 module.exports = {
 <?php foreach ($versions as $version):
+	$fu = false;
 	registry::set(registry::current_index,'version',$version);
 	?>
 	// <?= $version['title'] ?>
@@ -38,6 +39,12 @@ module.exports = {
 	$url = $asset['url'][$version['key']->get()];
 	if (isset($asset['type']) && $asset['type'] == 'reader_detail') $url .= '/:id';
 	if ($asset['key'] == 'home'):
+		$fu = true;
+		$homeUrl = empty($homeUrl) ? $url : $homeUrl;
+?>
+	[`${config.BASE}<?= $version['key'] ?>`]: '/<?= $version['key'] ?><?= $url ?>',
+<?php endif;
+	if ($asset['key'] == 'homepage' && $fu === false):
 		$homeUrl = empty($homeUrl) ? $url : $homeUrl;
 ?>
 	[`${config.BASE}<?= $version['key'] ?>`]: '/<?= $version['key'] ?><?= $url ?>',
