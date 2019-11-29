@@ -146,7 +146,7 @@ class boot
 		}
 	   //	version
     $versions = array_keys($site[$key]['url']);
-    if (empty($lang)) $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    if (empty($lang) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     if (in_array($lang, $versions))
     {
       $this->site['version'] = $lang;
