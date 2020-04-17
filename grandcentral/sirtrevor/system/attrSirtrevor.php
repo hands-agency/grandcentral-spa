@@ -15,35 +15,56 @@ class attrSirtrevor extends _attrs
  * @return	string	la définition mysql
  * @access	public
  */
-	public function convert_links($txt)
-	{
-		// print'<pre>';print_r($txt);print'</pre>';
-		$from = array();
-		$to = array();
-		$pattern = '/<a href=\"([^\"]*)\">.*<\/a>/iU';
-		preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
-		// print'<pre>';print_r($matches);print'</pre>';
-		foreach ($matches as $link)
-		{
-			$from[] = $link[1];
-			$url = html_entity_decode($link[1]);
-			// url déjà dans le texte
-			if (filter_var($url, FILTER_VALIDATE_URL))
-			{
-				$to[] = $url;
-			}
-			// lien Grand Central
-			elseif (mb_strstr($url, '['))
-			{
-				$tmp = explode('_', str_replace(array('[', ']'), '', $url));
-				$to[] = i($tmp[0], $tmp[1])['url']->__tostring();
-			}
-		}
-		// print'<pre>from : ';print_r($from);print'</pre>';
-		// print'<pre>to : ';print_r($to);print'</pre>';
-	//	retour
-		return str_replace($from, $to, $txt);
-	}
+ public function convert_links($txt)
+ {
+	 // print'<pre>';print_r($txt);print'</pre>';
+	 $from = [];
+	 $to_replace = [];
+	 $pattern = '/<a href=\"([^\"]*)\">.*<\/a>/iU';
+	 preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
+	 foreach ($matches as $link)
+	 {
+		 $from[] = $link[1];
+		 $url = html_entity_decode($link[1]);
+		 // url déjà dans le texte
+		 if (filter_var($url, FILTER_VALIDATE_URL))
+		 {
+			 $to_replace[] = [
+				 'url' => $url,
+				 'type' => 'external'
+			 ];
+		 }
+		 // lien Grand Central
+		 elseif (mb_strstr($url, '['))
+		 {
+			 $tmp = explode('_', str_replace(array('[', ']'), '', $url));
+			 $to_replace[] = [
+				 'url' => str_replace(DOMAIN_URL, '', i($tmp[0], $tmp[1])['url']->__tostring()),
+				 'type' => 'internal'
+			 ];
+		 }
+		 else {
+			 $to_replace[] = [
+				 'url' => $url,
+				 'type' => 'external'
+			 ];
+		 }
+	 }
+	 $to = array_column($to_replace, 'url');
+	 $links = str_replace($from, $to, $txt);
+	 $to = $from = [];
+	 foreach ($to_replace as $link)
+	 {
+		 if ($link['type'] == 'internal')
+		 {
+			 $from[] = '<a href="'.$link['url'];
+			 $to[] = '<a class="jslink" href="'.$link['url'];
+		 }
+	 }
+	 $links = str_replace($from, $to, $links);
+ //	retour
+	 return $links;
+ }
 /**
  * Set array attribute
  *
