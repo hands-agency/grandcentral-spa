@@ -58,7 +58,7 @@ class attrSirtrevor extends _attrs
 		 if ($link['type'] == 'internal')
 		 {
 			 $from[] = '<a href="'.$link['url'];
-			 $to[] = '<a class="jslink" href="'.$link['url'];
+			 $to[] = '<a class="js-link" href="'.$link['url'];
 		 }
 	 }
 	 $links = str_replace($from, $to, $links);
