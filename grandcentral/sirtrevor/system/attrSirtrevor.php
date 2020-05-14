@@ -60,6 +60,11 @@ class attrSirtrevor extends _attrs
 			 $from[] = '<a href="'.$link['url'];
 			 $to[] = '<a class="js-link" href="'.$link['url'];
 		 }
+     elseif ($link['type'] == 'external')
+     {
+       $from[] = '<a href="'.$link['url'];
+			 $to[] = '<a target="_blank" href="'.$link['url'];
+     }
 	 }
 	 $links = str_replace($from, $to, $links);
  //	retour
