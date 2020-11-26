@@ -92,7 +92,7 @@ class biggie
 				'site' => [
 					'title' => $site['title']->get(),
 					'url' => SITE_URL,
-					'image' => isset($site['default']) && !$site['default']->is_empty() && method_exists($site['default'], 'unfold') ? $site['default']->unfold()[0]->get_url() : '',
+					'image' => (isset($site['default']) && !$site['default']->is_empty() && method_exists($site['default'], 'unfold')) ? $site['default']->unfold()[0]->get_url() : '',
 				]
 			];
 			// master
@@ -184,9 +184,9 @@ class biggie
 		// echo "<pre>";print_r($item['title']->get());echo "</pre>";
 		foreach ($this->versions as $version)
 		{
-			$title = isset($item['metatitle']) && !$item['metatitle']->is_empty() ?
+			$title = ((isset($item['metatitle']) && !$item['metatitle']->is_empty()) ?
 				$item['metatitle']->get()[$version['key']->get()] :
-				is_a($item['title'], 'attrI18n') ?
+				is_a($item['title'], 'attrI18n')) ?
 					$item['title']->get()[$version['key']->get()] :
 					$item['title']->get();
 			$descr = '';
