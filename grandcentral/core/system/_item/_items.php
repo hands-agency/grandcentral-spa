@@ -261,13 +261,16 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 
 		// biggie
-		$b = new biggie();
-		$b->get_assets();
-		$b->generate_route();
-		$b->generate_less();
-		$b->generate_templates();
-		$b->export_asset();
-		$b->export_meta();
+		if (!in_array($this->get_table(), ['logbook','human']))
+		{
+			$b = new biggie();
+			$b->get_assets();
+			$b->generate_route();
+			$b->generate_less();
+			$b->generate_templates();
+			$b->export_asset();
+			$b->export_meta();
+		}
 	}
 /**
  * Build queries to update an item
