@@ -21,7 +21,7 @@
 //	Some debug
 /********************************************************************************************/
 //	sentinel::debug('Our post', $_POST);
-	
+
 /********************************************************************************************/
 //	Some functions
 /********************************************************************************************/
@@ -41,15 +41,15 @@
 	if (!empty($_POST))
 	{
 	//	hack magic_quote_gpc
-		if (get_magic_quotes_gpc())
-		{
-			$_POST = stripslashes_deep($_POST);
-		}
-		
+		// if (get_magic_quotes_gpc())
+		// {
+		// 	$_POST = stripslashes_deep($_POST);
+		// }
+
 	//	recherche du formulaire de provenance
 		$key = array_keys($_POST);
 		$form = i('form', $key[0], $_SESSION['pref']['handled_env']);
-		
+
 		if ($form->exists())
 		{
 		//	Are we going to the workflow ?
@@ -64,6 +64,6 @@
 		{
 			trigger_error('Give me a form. Form "'.$key[0].'" does not exists', E_USER_ERROR);
 		}
-	
+
 	}
 ?>
